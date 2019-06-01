@@ -1,0 +1,107 @@
+header {
+    perspective: 800px;
+    position: absolute;
+    width: 100%;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 22px;
+    color: #000;
+    height: 50px;
+    background-color: #ffffffbb;
+}
+
+header .container {
+    width: 80vw;
+    background: #ffffff70;
+    margin: 0 auto;
+    display: flex;
+}
+
+header .container div {
+    padding-left: 2vw;
+    height: 50px;
+    line-height: 50px;
+    justify-content: space-around;
+}
+
+header .container .logo:hover {
+    transform: rotateY(360deg);
+
+}
+
+header .container div:nth-of-type(1) {
+    flex: 0.29;
+}
+
+header .container div:nth-of-type(2) {
+    flex: 0.4;
+}
+
+header .container div:nth-of-type(3) {
+    flex: 0.31;
+}
+
+header .container div ul li {
+    margin: 0 1vw;
+    height: 50px;
+}
+
+header .container .search input:first-of-type {
+    width: 15vw;
+    height: 22px;
+    outline: none;
+    border: none;
+    text-indent: 5px;
+}
+
+header .container .search input {
+    transform: translateY(-3px);
+    box-shadow: #00000080 0 0 2px 2px;
+}
+
+header a {
+    text-decoration: none;
+    color: #000;
+    transition: all 0.3s linear;
+}
+
+header a:hover {
+    text-decoration: none;
+    color: #f40;
+}
+
+header .container .content ul {
+    display: flex;
+}
+
+/*
+响应式部分的处理
+*/
+@media screen and (max-width: 800px) {
+    header {
+        font-size: 18px;
+    }
+
+    header .container {
+        width: 100vw;
+    }
+
+    header .container div:nth-of-type(2) {
+        flex: 0.55;
+    }
+
+    header .container div:nth-of-type(3) {
+        flex: 0.45;
+    }
+
+    header .container div.logo {
+        display: none;
+    }
+
+    header .container .search input:first-of-type {
+        width: 25vw;
+    }
+
+    header .container .search input {
+        height: 22px;
+    }
+}
