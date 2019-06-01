@@ -1,0 +1,169 @@
+header {
+    perspective: 800px;
+    position: absolute;
+    width: 100%;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 22px;
+    color: #000;
+    height: 50px;
+    background-color: #ffffffdd;
+    position: fixed;
+    z-index: 10;
+    box-shadow: #999 0px 1px 1px 1px;
+}
+
+header .container {
+    width: 80vw;
+    background: #ffffff70;
+    margin: 0 auto;
+    display: flex;
+}
+
+header .container div {
+    padding-left: 2vw;
+    height: 50px;
+    line-height: 50px;
+    justify-content: space-around;
+}
+
+header .container .logo:hover {
+    -webkit-animation-name: jello;
+    animation-name: jello;
+
+
+}
+
+header .container div:nth-of-type(1) {
+    flex: 0.29;
+}
+
+header .container div:nth-of-type(2) {
+    flex: 0.4;
+}
+
+header .container div:nth-of-type(3) {
+    flex: 0.31;
+}
+
+header .container div ul li {
+    margin: 0 1vw;
+    height: 50px;
+
+}
+
+header .container div ul li:hover {
+    -webkit-animation-name: jello;
+    animation-name: jello;
+}
+
+header .container .search input:first-of-type {
+    width: 15vw;
+
+    outline: none;
+    border: none;
+    text-indent: 5px;
+}
+
+header .container .search input {
+    height: 30px;
+    transform: translateY(-3px);
+    box-shadow: #00000080 0 0 2px 2px;
+}
+
+header a {
+    text-decoration: none;
+    color: #000;
+    transition: all 0.3s linear;
+}
+
+header a:hover {
+    text-decoration: none;
+    color: #f40;
+}
+
+header .container .content ul {
+    display: flex;
+}
+
+/*
+响应式部分的处理
+*/
+@media screen and (max-width: 800px) {
+    header {
+        font-size: 18px;
+    }
+
+    header .container {
+        width: 100vw;
+    }
+
+    header .container div:nth-of-type(2) {
+        flex: 0.55;
+    }
+
+    header .container div:nth-of-type(3) {
+        flex: 0.45;
+    }
+
+    header .container div.logo {
+        display: none;
+    }
+
+    header .container .search input:first-of-type {
+        width: 25vw;
+    }
+
+
+}
+
+.animated {
+    -webkit-animation-duration: 1s;
+    animation-duration: 1s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+}
+
+@keyframes jello {
+
+    from,
+    11.1%,
+    to {
+        -webkit-transform: none;
+        transform: none;
+    }
+
+    22.2% {
+        -webkit-transform: skewX(-12.5deg) skewY(-12.5deg);
+        transform: skewX(-12.5deg) skewY(-12.5deg);
+    }
+
+    33.3% {
+        -webkit-transform: skewX(6.25deg) skewY(6.25deg);
+        transform: skewX(6.25deg) skewY(6.25deg);
+    }
+
+    44.4% {
+        -webkit-transform: skewX(-3.125deg) skewY(-3.125deg);
+        transform: skewX(-3.125deg) skewY(-3.125deg);
+    }
+
+    55.5% {
+        -webkit-transform: skewX(1.5625deg) skewY(1.5625deg);
+        transform: skewX(1.5625deg) skewY(1.5625deg);
+    }
+
+    66.6% {
+        -webkit-transform: skewX(-0.78125deg) skewY(-0.78125deg);
+        transform: skewX(-0.78125deg) skewY(-0.78125deg);
+    }
+
+    77.7% {
+        -webkit-transform: skewX(0.390625deg) skewY(0.390625deg);
+        transform: skewX(0.390625deg) skewY(0.390625deg);
+    }
+
+    88.8% {
+        -webkit-transform: skewX(-0.1953125deg) skewY(-0.1953125deg);
+        transform: skewX(-0.1953125deg) skewY(-0.1953125deg);
+    }
+}

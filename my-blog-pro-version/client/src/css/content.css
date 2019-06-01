@@ -1,0 +1,248 @@
+@font-face {
+    font-family: "icon";
+    src: url("../font/glyphicons-halflings-regular.woff2")
+}
+
+.content-wrapper {
+    perspective: 800px;
+    position: absolute;
+    width: 100%;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    height: 50px;
+    position: absolute;
+    top: 55px;
+    text-shadow: #ffffffaa 1px 1px;
+}
+
+section.content {
+    width: 80vw;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    border-radius: 5px;
+}
+
+section.content .content-left,
+section.content .content-right {
+    /* background-color: #ffffff70; */
+    box-shadow: #00000050 1px 1px 3px 1px;
+    box-sizing: border-box;
+    border-radius: 5px;
+    border: 1px solid #fff;
+}
+
+section.content .content-left {
+    width: calc(60% - 5px);
+    margin: 5px 5px 5px 0;
+}
+
+section.content .content-right {
+    width: calc(40% - 5px);
+    margin: 5px 0px 5px 5px;
+}
+
+section.content .content-left .every-day {
+    padding: 1vw;
+    margin-bottom: 10px;
+    background: #ffffffdd;
+    border-radius: 5px;
+}
+
+section.content .content-left .every-day blockquote {
+    margin: 8px 0;
+}
+
+section.content .content-left .every-day .text-right {
+    width: 100%;
+    display: inline-block;
+    text-align: right;
+}
+
+section.content .content-left .every-day .text-right::before {
+    content: "——";
+}
+
+
+section.content .content-left .every-day>p::after {
+    font-family: icon;
+    content: "\e122";
+    margin-left: 5px;
+}
+
+
+section.content .content-left .article-list {
+    background-color: #ffffffdd;
+    padding: 5px;
+    border-radius: 5px;
+
+}
+
+section.content .content-left .article-list .article-title {
+    padding: 20px 0px 10px 10px;
+    font-size: 22px;
+}
+
+section.content .content-left .article-list .article-body {
+    padding: 10px 5px;
+}
+
+section.content .content-left .article-list .article-foot {
+    padding: 5px 5px;
+    background-color: #000;
+    border-radius: 5px;
+    color: white;
+    text-shadow: none;
+}
+
+
+/*
+右侧部分
+*/
+/*随机标签*/
+section.content .content-right .random-tags {
+    width: 100%;
+    /* min-height: 100px; */
+    background-color: #ffffffdd;
+    border-radius: 5px;
+    margin-bottom: 10px;
+
+}
+
+section.content .content-right .random-tags p {
+    width: 100%;
+    height: 50px;
+    line-height: 50px;
+    font-size: 24px;
+    padding: 0 10px;
+}
+
+section.content .content-right .random-tags .tag-container {
+    width: 100%;
+    min-height: 30px;
+    line-height: 30px;
+    font-size: 16px;
+    padding: 5px 10px;
+    box-sizing: border-box;
+
+}
+
+/*热门文章*/
+section.content .content-right .hot-articles {
+    width: 100%;
+    background-color: #ffffffdd;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+
+}
+
+section.content .content-right .hot-articles>p {
+    width: 100%;
+    height: 50px;
+    line-height: 50px;
+    font-size: 24px;
+    padding: 0 10px;
+}
+
+
+section.content .content-right .hot-articles ul li {
+    width: 100%;
+    min-height: 24px;
+    line-height: 24px;
+    font-size: 16px;
+    padding: 5px 10px;
+}
+
+/*
+最近评论
+*/
+section.content .content-right .recent-comments {
+    width: 100%;
+    /* min-height: 100px; */
+    background-color: #ffffffdd;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    padding: 0px 10px 5px;
+    box-sizing: border-box;
+
+}
+
+section.content .content-right .recent-comments>p {
+    width: 100%;
+    min-height: 50px;
+    line-height: 50px;
+    font-size: 24px;
+
+}
+
+section.content .content-right .recent-comments .comment-item {
+    margin: 0 0 15px;
+}
+
+section.content .content-right .recent-comments .comment-item .comment-info {
+    width: 80%;
+    display: flex;
+    justify-content: space-between;
+}
+
+section.content .content-right .recent-comments .comment-item .comment-info span {
+    font-size: 18px;
+}
+
+section.content .content-right .recent-comments .comment-item .comment-content {
+    margin: 7px 0;
+    font-size: 16px;
+}
+
+
+/*友情链接*/
+
+
+section.content .content-right .friend-links {
+    width: 100%;
+    /* min-height: 100px; */
+    background-color: #ffffffdd;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    padding: 0px 10px 5px;
+    box-sizing: border-box;
+
+}
+
+section.content .content-right .friend-links>p {
+    width: 100%;
+    min-height: 50px;
+    line-height: 50px;
+    font-size: 24px;
+}
+
+section.content .content-right .friend-links ul {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+section.content .content-right .friend-links ul li {
+    min-width: 50%;
+    margin: 10px 0;
+}
+
+/*
+响应式
+*/
+
+
+
+
+
+@media screen and (max-width:800px) {
+
+    section.content {
+        width: 95%;
+    }
+
+    section.content .content-left,
+    section.content .content-right {
+        width: 100%;
+        margin: 5px 0;
+    }
+}

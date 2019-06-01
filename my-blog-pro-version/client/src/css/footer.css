@@ -1,0 +1,21 @@
+footer {
+    width: 100%;
+    min-height: 100px;
+    background-color: #111;
+    position: absolute;
+    color: aliceblue;
+    text-align: center;
+    line-height: 40px;
+}
+
+footer ul {
+    width: 80%;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+footer a {
+    color: aliceblue;
+}
