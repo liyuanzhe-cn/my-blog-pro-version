@@ -155,18 +155,18 @@
                 <section class="content">
                         <!-- 左侧内容区域 -->
                         <div class="content-left">
-                                <div class="every-day">
+                                <div id="every-day" class="every-day">
                                         <p>每日一句</p>
-                                        <blockquote>失败是成功之母</blockquote>
-                                        <cite class="text-right">失败是成功之母</cite>
+                                        <blockquote v-html="getContent"></blockquote>
+                                        <cite class="text-right" v-html="getAuthor"></cite>
                                 </div>
-                                <div class="article-list">
+                                <div id="article-list" class="article-list">
                                         <div class="article-title">
                                                 <strong>标题</strong>
                                         </div>
                                         <div class="article-body">
                                                 <p>
-                                                        文章文章文章文章文章文章文章文章文章文章文章文章文章文章文章文章文章文章文章文章文章文章文章文章文章文章文章文章文章文章文章文章文章文章文章文章文章文章文章文章文章文章文章文章文章文章
+
                                                 </p>
                                         </div>
                                         <div class="article-foot">
@@ -270,6 +270,7 @@
                 </ul>
         </footer>
 
+        <script src="./js/index.js"></script>
 </body>
 
 </html>
