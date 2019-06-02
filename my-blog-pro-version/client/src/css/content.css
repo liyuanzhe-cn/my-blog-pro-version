@@ -27,7 +27,7 @@ section.content .content-right {
     box-shadow: #00000050 1px 1px 3px 1px;
     box-sizing: border-box;
     border-radius: 5px;
-    border: 1px solid #fff;
+    /* border: 1px solid #fff; */
 }
 
 section.content .content-left {
@@ -73,6 +73,7 @@ section.content .content-left .article-list {
     background-color: #ffffffdd;
     padding: 5px;
     border-radius: 5px;
+    margin-bottom: 10px;
 
 }
 
@@ -94,140 +95,7 @@ section.content .content-left .article-list .article-foot {
 }
 
 
-/*
-右侧部分
-*/
-/*随机标签*/
-section.content .content-right .random-tags {
-    width: 100%;
-    /* min-height: 100px; */
-    background-color: #ffffffdd;
-    border-radius: 5px;
-    margin-bottom: 10px;
 
-}
-
-section.content .content-right .random-tags p {
-    width: 100%;
-    height: 50px;
-    line-height: 50px;
-    font-size: 24px;
-    padding: 0 10px;
-}
-
-section.content .content-right .random-tags .tag-container {
-    width: 100%;
-    min-height: 30px;
-    line-height: 30px;
-    font-size: 16px;
-    padding: 5px 10px;
-    box-sizing: border-box;
-
-}
-
-/*热门文章*/
-section.content .content-right .hot-articles {
-    width: 100%;
-    background-color: #ffffffdd;
-    border-radius: 5px;
-    margin-bottom: 10px;
-    padding-bottom: 10px;
-
-}
-
-section.content .content-right .hot-articles>p {
-    width: 100%;
-    height: 50px;
-    line-height: 50px;
-    font-size: 24px;
-    padding: 0 10px;
-}
-
-
-section.content .content-right .hot-articles ul li {
-    width: 100%;
-    min-height: 24px;
-    line-height: 24px;
-    font-size: 16px;
-    padding: 5px 10px;
-}
-
-/*
-最近评论
-*/
-section.content .content-right .recent-comments {
-    width: 100%;
-    /* min-height: 100px; */
-    background-color: #ffffffdd;
-    border-radius: 5px;
-    margin-bottom: 10px;
-    padding: 0px 10px 5px;
-    box-sizing: border-box;
-
-}
-
-section.content .content-right .recent-comments>p {
-    width: 100%;
-    min-height: 50px;
-    line-height: 50px;
-    font-size: 24px;
-
-}
-
-section.content .content-right .recent-comments .comment-item {
-    margin: 0 0 15px;
-}
-
-section.content .content-right .recent-comments .comment-item .comment-info {
-    width: 80%;
-    display: flex;
-    justify-content: space-between;
-}
-
-section.content .content-right .recent-comments .comment-item .comment-info span {
-    font-size: 18px;
-}
-
-section.content .content-right .recent-comments .comment-item .comment-content {
-    margin: 7px 0;
-    font-size: 16px;
-}
-
-
-/*友情链接*/
-
-
-section.content .content-right .friend-links {
-    width: 100%;
-    /* min-height: 100px; */
-    background-color: #ffffffdd;
-    border-radius: 5px;
-    margin-bottom: 10px;
-    padding: 0px 10px 5px;
-    box-sizing: border-box;
-
-}
-
-section.content .content-right .friend-links>p {
-    width: 100%;
-    min-height: 50px;
-    line-height: 50px;
-    font-size: 24px;
-}
-
-section.content .content-right .friend-links ul {
-    display: flex;
-    flex-wrap: wrap;
-}
-
-section.content .content-right .friend-links ul li {
-    min-width: 50%;
-    margin: 10px 0;
-}
-
-/*
-响应式
-*/
 
 
 

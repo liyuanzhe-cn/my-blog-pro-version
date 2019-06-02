@@ -14,6 +14,8 @@
         <link rel="stylesheet" href="./css/commonCss/header.css">
         <!-- 内容区域 -->
         <link rel="stylesheet" href="./css/content.css">
+        <!-- 右侧公共部分 -->
+        <link rel="stylesheet" href="./css/commonCss/tags-hots-recents-friends.css">
         <!-- 底部 -->
         <link rel="stylesheet" href="./css/commonCss/footer.css">
         <!-- VUE 2.6.10 -->
@@ -160,37 +162,34 @@
                                         <blockquote v-html="getContent"></blockquote>
                                         <cite class="text-right" v-html="getAuthor"></cite>
                                 </div>
-                                <div id="article-list" class="article-list">
-                                        <div class="article-title">
-                                                <strong>标题</strong>
+                                <div id="article-list">
+                                        <div class="article-list" v-for="(value, key) in articleList">
+                                                <div class="article-title">
+                                                        <a v-bind:href="articleList.link">
+                                                                <strong>{{value.title}}</strong>
+                                                        </a>
+                                                </div>
+                                                <div class="article-body">
+                                                        <p>
+                                                                {{value.content}}
+                                                        </p>
+                                                </div>
+                                                <div class="article-foot">
+                                                        <span>发布于{{value.date}} |</span>
+                                                        <span>浏览({{value.date}}) |</span>
+                                                        <span>Tags：{{value.tags}}</span>
+                                                </div>
                                         </div>
-                                        <div class="article-body">
-                                                <p>
 
-                                                </p>
-                                        </div>
-                                        <div class="article-foot">
-                                                <span>发布于2019-05-20 |</span>
-                                                <span>浏览(430) |</span>
-                                                <span>Tags：docker</span>
-                                        </div>
                                 </div>
                         </div>
                         <!-- 右侧内容区域 -->
                         <div class="content-right">
-                                <div class="random-tags">
+                                <div id="random-tags" class="random-tags">
                                         <p>随机标签云</p>
                                         <div class="tag-container">
-                                                <a href="">数组</a>
-                                                <a href="">面向对象</a>
-                                                <a href="">Vue</a>
-                                                <a href="">React</a>
-                                                <a href="">Nodejs</a>
-                                                <a href="">数组</a>
-                                                <a href="">面向对象</a>
-                                                <a href="">Vue</a>
-                                                <a href="">React</a>
-                                                <a href="">Nodejs</a>
+                                                <a :style="{color:randomColor,margin:'0 10px', fontSize:randomSize}"
+                                                        v-for="(v,k) in tags" v-html="v" href="">{{tags}}</a>
                                         </div>
                                 </div>
                                 <div class="hot-articles ">
@@ -271,6 +270,7 @@
         </footer>
 
         <script src="./js/index.js"></script>
+        <script src="./js/base.js"></script>
 </body>
 
 </html>
