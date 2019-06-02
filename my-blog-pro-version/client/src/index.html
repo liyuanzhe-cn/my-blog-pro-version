@@ -5,20 +5,24 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <title>Document</title>
+        <title>李沅哲的技术博客</title>
         <!-- 样式初始化 -->
-        <link rel="stylesheet" href="./css/reset.css">
+        <link rel="stylesheet" href="./css/commonCss/reset.css">
         <!-- 树叶飘落背景 -->
-        <link rel="stylesheet" href="./css/bg.css">
+        <link rel="stylesheet" href="./css/commonCss/bg.css">
         <!-- header部分的样式 -->
-        <link rel="stylesheet" href="./css/header.css">
+        <link rel="stylesheet" href="./css/commonCss/header.css">
         <!-- 内容区域 -->
         <link rel="stylesheet" href="./css/content.css">
         <!-- 底部 -->
-        <link rel="stylesheet" href="./css/footer.css">
+        <link rel="stylesheet" href="./css/commonCss/footer.css">
+        <!-- VUE 2.6.10 -->
+        <script src="https://cdn.jsdelivr.net/npm/vue"></script>
 </head>
 
 <body>
+
+        <!-- 树叶背景 -->
         <div id='leavedrop'>
                 <div class="set set1">
                         <div class="leaves"><img
@@ -120,31 +124,36 @@
                 </div>
         </div>
 
-
+        <!-- 头部区域 -->
         <header>
-                <div class="container">
-                        <div class="logo animated">
-                                <p>
-                                        李沅哲的技术博客
-                                </p>
-                        </div>
-                        <div class="content">
-                                <ul>
-                                        <li class="animated"><a href="">首页</a></li>
-                                        <li class="animated"><a href="">地图</a></li>
-                                        <li class="animated"><a href="">关于</a></li>
-                                        <li class="animated"><a href="">留言</a></li>
-                                </ul>
-                        </div>
-                        <div class="search">
-                                <input type="text" placeholder="输入关键词">
-                                <input type="button" value="搜索🔍">
+                <div class="container-wrapper">
+                        <div class="container">
+                                <div class="logo animated">
+                                        <p>
+                                                李沅哲的技术博客
+                                        </p>
+                                </div>
+                                <div class="content">
+                                        <ul>
+                                                <li class="animated"><a href="">首页</a></li>
+                                                <li class="animated"><a href="">地图</a></li>
+                                                <li class="animated"><a href="">关于</a></li>
+                                                <li class="animated"><a href="">留言</a></li>
+                                        </ul>
+                                </div>
+                                <div class="search">
+                                        <input type="text" placeholder="输入关键词">
+                                        <input type="button" value="搜索🔍">
+                                </div>
                         </div>
                 </div>
+
         </header>
 
+        <!-- 内容区域 -->
         <div class="content-wrapper">
                 <section class="content">
+                        <!-- 左侧内容区域 -->
                         <div class="content-left">
                                 <div class="every-day">
                                         <p>每日一句</p>
@@ -167,6 +176,7 @@
                                         </div>
                                 </div>
                         </div>
+                        <!-- 右侧内容区域 -->
                         <div class="content-right">
                                 <div class="random-tags">
                                         <p>随机标签云</p>
@@ -230,8 +240,7 @@
                 </section>
         </div>
 
-        <div style="height: 1000px;"></div>
-
+        <!-- 页脚部分 -->
         <footer>
                 <span>李沅哲 ： 一名有理想的前端开发 &copy; 2019</span>
                 <ul class="list-inline">
@@ -260,6 +269,7 @@
                                         title="精彩视频分享">视频分享</a></li>
                 </ul>
         </footer>
+
 </body>
 
 </html>

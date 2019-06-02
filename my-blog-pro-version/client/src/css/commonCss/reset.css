@@ -10,12 +10,7 @@ span,
 applet,
 object,
 iframe,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
+
 p,
 blockquote,
 pre,
@@ -37,7 +32,7 @@ s,
 samp,
 small,
 strike,
-strong,
+
 sub,
 sup,
 tt,
@@ -111,7 +106,7 @@ body {
     line-height: 1;
 }
 
-ol,
+
 ul {
     list-style: none;
 }
@@ -135,6 +130,6 @@ table {
 }
 
 a {
-    color: #000;
+    color: #000000ff;
     text-decoration: none;
 }

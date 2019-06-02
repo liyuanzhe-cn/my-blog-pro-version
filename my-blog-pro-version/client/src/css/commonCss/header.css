@@ -1,22 +1,31 @@
 header {
-    perspective: 800px;
-    position: absolute;
     width: 100%;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     font-size: 22px;
     color: #000;
     height: 50px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+}
+
+header .container-wrapper {
+    width: 100vw;
+    background-color: #ffffff77;
+    height: 50px;
+    position: fixed;
+    z-index: 10;
+}
+
+header .container-wrapper .container {
     background-color: #ffffffdd;
+    width: 80vw;
+    transform: translate(10vw);
+    margin: 0 auto;
+    display: flex;
     position: fixed;
     z-index: 10;
     box-shadow: #999 0px 1px 1px 1px;
-}
-
-header .container {
-    width: 80vw;
-    background: #ffffff70;
-    margin: 0 auto;
-    display: flex;
 }
 
 header .container div {
@@ -88,13 +97,14 @@ header .container .content ul {
 /*
 响应式部分的处理
 */
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 850px) {
     header {
         font-size: 18px;
     }
 
-    header .container {
+    header .container-wrapper .container {
         width: 100vw;
+        transform: translate(0vw);
     }
 
     header .container div:nth-of-type(2) {
