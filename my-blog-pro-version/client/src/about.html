@@ -135,10 +135,10 @@
                 </div>
                 <div class="content">
                     <ul>
-                        <li class="animated"><a href="">首页</a></li>
-                        <li class="animated"><a href="">地图</a></li>
-                        <li class="animated"><a href="">关于</a></li>
-                        <li class="animated"><a href="">留言</a></li>
+                        <li class="animated"><a href="/index.html">首页</a></li>
+                        <li class="animated"><a href="/sitemap.html">地图</a></li>
+                        <li class="animated"><a href="/about.html">关于</a></li>
+                        <li class="animated"><a href="/guestbook.html">留言</a></li>
                     </ul>
                 </div>
                 <div class="search">
@@ -225,21 +225,43 @@
 
             <!-- 右侧区域 -->
             <div class="content-right">
-                <div class="random-tags">
-                    <p>随机标签云</p>
-                    <div class="tag-container">
-                        <a href="">数组</a>
-                        <a href="">面向对象</a>
-                        <a href="">Vue</a>
-                        <a href="">React</a>
-                        <a href="">Nodejs</a>
-                        <a href="">数组</a>
-                        <a href="">面向对象</a>
-                        <a href="">Vue</a>
-                        <a href="">React</a>
-                        <a href="">Nodejs</a>
+                <!-- 音乐播放器 -->
+                <div id="music-player">
+                    <div id="image">
+                        <div class="image" :style="{backgroundImage: 'url(' + musicList[currentMusic]['image'] + ')'}">
+
+                        </div>
+                        <div class="image-small"
+                            :style="{transform:'rotate('+ deg +'deg)',backgroundImage: 'url(' + musicList[currentMusic]['image'] + ')'}">
+                        </div>
+
+                    </div>
+                    <div id="player">
+                        <div id="songTitle">{{musicList[currentMusic]['song']}}</div>
+                        <div id="buttons">
+                            <button id="pre" @click="change('pre')"><img src="./image/Pre.png" height="90%"
+                                    width="90%" /></button>
+                            <button id="play" @click="play"><img
+                                    :src="playing ? './image/Pause.png':'./image/Play.png'" /></button>
+                            <button id="next" @click="change('next')"><img src="./image/Next.png" height="90%"
+                                    width="90%" /></button>
+                        </div>
+
+                        <div id="seek-bar">
+                            <div id="fill"></div>
+                            <div id="handle" :style="{left:percentage}"></div>
+                        </div>
                     </div>
                 </div>
+                <!-- 随机标签云 -->
+                <div id="random-tags" class="random-tags">
+                    <p>随机标签云</p>
+                    <div class="tag-container">
+                        <a v-bind:style="{color:randomColor(),margin:'10px 10px', fontSize:randomSize()}"
+                            v-for="(v,k) in tags" href="">{{v}}</a>
+                    </div>
+                </div>
+                <!-- 热门文章标题 -->
                 <div class="hot-articles ">
                     <p>热门文章</p>
                     <ul class="hot-articles-container">
@@ -314,6 +336,8 @@
             <li class="cat-item cat-item-8"><a href="https://www.zh30.com/category/videos" title="精彩视频分享">视频分享</a></li>
         </ul>
     </footer>
+
+    <script src="./js/base.js"></script>
 </body>
 
 </html>

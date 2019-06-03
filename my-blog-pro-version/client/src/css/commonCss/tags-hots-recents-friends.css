@@ -1,6 +1,141 @@
 /*
 右侧部分
 */
+
+/**/
+#music-player {
+    width: 100%;
+    background-color: #ffffffdd;
+    border-radius: 15px;
+    position: relative;
+
+    z-index: 10;
+    margin: 5px 0 10px;
+}
+
+#image .image {
+    height: 280px;
+    width: 100%;
+    background-color: #333;
+    margin-top: -5px;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    box-shadow: #ffffff88 0px 0px 5px 1px;
+    position: absolute;
+    background-size: cover;
+    background-position: center center;
+    filter: blur(5px);
+    /* background-image: url('https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1557147487355&di=153507d1842c7d6119ae9e5b846c71f6&imgtype=0&src=http%3A%2F%2F5b0988e595225.cdn.sohucs.com%2Fimages%2F20171126%2Fb4b871c6ff4749a0a4cac099de1e33cd.jpeg') */
+}
+
+
+#image .image-small {
+    width: 180px;
+    height: 180px;
+    box-shadow: #000000aa 0 0 0 40px;
+    position: relative;
+    top: 50px;
+    border-radius: 50%;
+    margin: 0 auto;
+    background-size: cover;
+    background-position: center center;
+    margin-bottom: 100px;
+}
+
+
+#player {
+    padding: 25px;
+    color: #333;
+}
+
+#songTitle {
+    width: 300px;
+    text-align: center;
+    font-family: monospace;
+    font-size: 18px;
+    position: absolute;
+    top: 70%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+#buttons {
+    height: 50px;
+    width: 100%;
+    margin-top: 50px;
+    position: relative;
+    top: 10%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#play,
+#next,
+#pre {
+    width: 50px;
+    height: 50px;
+    border: 0;
+    background-color: royalblue;
+    border-radius: 50%;
+    outline: none;
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#next {
+    width: 30px;
+    height: 30px;
+    left: 70%;
+}
+
+#pre {
+    width: 30px;
+    height: 30px;
+    left: 30%;
+}
+
+#play img,
+#next img,
+#pre img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#seek-bar {
+    width: 75%;
+    height: 5px;
+    background-color: gray;
+    display: flex;
+    border-radius: 50px;
+    margin-left: 10%;
+    cursor: pointer;
+    position: relative;
+}
+
+#fill {
+    height: 5px;
+    background-color: royalblue;
+    border-radius: 20px;
+
+}
+
+#handle {
+    width: 8px;
+    height: 8px;
+    background-color: royalblue;
+    border-radius: 50%;
+    margin-left: -5px;
+    transform: scale(2);
+    position: absolute;
+
+}
+
 /*随机标签*/
 section.content .content-right .random-tags {
     width: 100%;
@@ -21,7 +156,7 @@ section.content .content-right .random-tags p {
 
 section.content .content-right .random-tags .tag-container {
     width: 100%;
-    min-height: 30px;
+    min-height: 150px;
     line-height: 30px;
     font-size: 16px;
     padding: 5px 10px;
