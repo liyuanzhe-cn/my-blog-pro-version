@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="compatible">
+            <h1>兼容性</h1>
+            <p>因为是我的个人博客，我花了5天做好的前端后端全部内容，还有之前做的VUE音乐播放器组件，和css树叶背景图， 暂时未考虑兼容性问题， 在一些国产浏览器会有不兼容的现象，</p>
+            <p>比如UC浏览器会出现一些颜色显示不出来，因为背景色我使用了 ： #aabbccdd 来设置的透明度</p>
+            <hr>
+            <h1>音乐无法播放</h1>
+            <p>在chrome下，音频视频使用localhost下的文件路径会出现问题，src引用的视频/音频的完整地址才可以暂停</p>
+            <p>我写的是自己的API接口，所以本地播放时会出现问题 "/queryMusic?music=学猫叫.mp3"</p>
+            <pre>
+                function queryMusic(request, response) {
+                console.log(request.query)
+                fs.readFile(__dirname + "/../music/" + request.query.music, (err, data) => {
+                if (data) {
+                response.setHeader("Content-Type", "audio/mpeg")
+                response.writeHead(200);
+                response.write(data);
+                response.end();
+                }
+                })
+                }
+                path.set('/queryMusic', queryMusic);
+            </pre>
+        </div>
+    </div>
+</body>
+
+</html>

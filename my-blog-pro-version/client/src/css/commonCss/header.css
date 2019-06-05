@@ -1,4 +1,5 @@
 header {
+    z-index: 1000;
     width: 100%;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     font-size: 22px;
@@ -38,8 +39,6 @@ header .container div {
 header .container .logo:hover {
     -webkit-animation-name: jello;
     animation-name: jello;
-
-
 }
 
 header .container div:nth-of-type(1) {

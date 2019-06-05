@@ -5,18 +5,20 @@
 /**/
 #music-player {
     width: 100%;
-    background-color: #ffffffdd;
+    /* background-color: #ffffffdd; */
     border-radius: 15px;
     position: relative;
 
     z-index: 10;
     margin: 5px 0 10px;
+
+
 }
 
 #image .image {
     height: 280px;
     width: 100%;
-    background-color: #333;
+    background-color: #ffffff00;
     margin-top: -5px;
     border-top-left-radius: 15px;
     border-top-right-radius: 15px;
@@ -24,7 +26,8 @@
     position: absolute;
     background-size: cover;
     background-position: center center;
-    filter: blur(5px);
+    filter: blur(3px);
+    opacity: 0.7;
     /* background-image: url('https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1557147487355&di=153507d1842c7d6119ae9e5b846c71f6&imgtype=0&src=http%3A%2F%2F5b0988e595225.cdn.sohucs.com%2Fimages%2F20171126%2Fb4b871c6ff4749a0a4cac099de1e33cd.jpeg') */
 }
 
@@ -32,9 +35,10 @@
 #image .image-small {
     width: 180px;
     height: 180px;
-    box-shadow: #000000aa 0 0 0 40px;
+    box-shadow: #000000bb 0 0 0 40px;
     position: relative;
     top: 50px;
+    z-index: 0;
     border-radius: 50%;
     margin: 0 auto;
     background-size: cover;
@@ -46,6 +50,10 @@
 #player {
     padding: 25px;
     color: #333;
+    background-color: #ffffffdd;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    box-shadow: #ffffffdd 0px -5px 2px 0px;
 }
 
 #songTitle {
@@ -118,6 +126,7 @@
     position: relative;
 }
 
+
 #fill {
     height: 5px;
     background-color: royalblue;
@@ -126,11 +135,11 @@
 }
 
 #handle {
-    width: 8px;
-    height: 8px;
+    width: 4px;
+    height: 4px;
     background-color: royalblue;
     border-radius: 50%;
-    margin-left: -5px;
+    /* margin-left: px; */
     transform: scale(2);
     position: absolute;
 
@@ -155,11 +164,12 @@ section.content .content-right .random-tags p {
 }
 
 section.content .content-right .random-tags .tag-container {
+    perspective: 500px;
     width: 100%;
-    min-height: 150px;
-    line-height: 30px;
+    /* min-height: 150px; */
+    line-height: 15px;
     font-size: 16px;
-    padding: 5px 10px;
+    padding: 30px 10px;
     box-sizing: border-box;
     display: flex;
     flex-wrap: wrap;
@@ -266,5 +276,62 @@ section.content .content-right .friend-links ul li {
 }
 
 /*
-响应式
+动画
 */
+/* .tag-container a:hover {
+    -webkit-animation-name: jello;
+    animation-name: jello;
+} */
+
+
+.animated {
+    -webkit-animation-duration: 1s;
+    animation-duration: 1s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+}
+
+@keyframes jello {
+
+    from,
+    11.1%,
+    to {
+        -webkit-transform: none;
+        transform: none;
+    }
+
+    22.2% {
+        -webkit-transform: skewX(-12.5deg) skewY(-12.5deg);
+        transform: skewX(-12.5deg) skewY(-12.5deg);
+    }
+
+    33.3% {
+        -webkit-transform: skewX(6.25deg) skewY(6.25deg);
+        transform: skewX(6.25deg) skewY(6.25deg);
+    }
+
+    44.4% {
+        -webkit-transform: skewX(-3.125deg) skewY(-3.125deg);
+        transform: skewX(-3.125deg) skewY(-3.125deg);
+    }
+
+    55.5% {
+        -webkit-transform: skewX(1.5625deg) skewY(1.5625deg);
+        transform: skewX(1.5625deg) skewY(1.5625deg);
+    }
+
+    66.6% {
+        -webkit-transform: skewX(-0.78125deg) skewY(-0.78125deg);
+        transform: skewX(-0.78125deg) skewY(-0.78125deg);
+    }
+
+    77.7% {
+        -webkit-transform: skewX(0.390625deg) skewY(0.390625deg);
+        transform: skewX(0.390625deg) skewY(0.390625deg);
+    }
+
+    88.8% {
+        -webkit-transform: skewX(-0.1953125deg) skewY(-0.1953125deg);
+        transform: skewX(-0.1953125deg) skewY(-0.1953125deg);
+    }
+}

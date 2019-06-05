@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>关于李沅哲</title>
+    <title>李沅哲的技术博客</title>
     <!-- 样式初始化 -->
     <link rel="stylesheet" href="./css/commonCss/reset.css">
     <!-- 树叶飘落背景 -->
@@ -13,8 +13,8 @@
     <!-- header部分的样式 -->
     <link rel="stylesheet" href="./css/commonCss/header.css">
     <!-- 内容区域 -->
-    <link rel="stylesheet" href="./css/guestbook.css">
-    <!-- 右侧内容区域 -->
+    <link rel="stylesheet" href="./css/blog_detail.css">
+    <!-- 右侧公共部分 -->
     <link rel="stylesheet" href="./css/commonCss/tags-hots-recents-friends.css">
     <!-- 底部 -->
     <link rel="stylesheet" href="./css/commonCss/footer.css">
@@ -23,6 +23,8 @@
 </head>
 
 <body>
+
+    <!-- 树叶背景 -->
     <div id="leavedrop">
         <div class="set set1">
             <div class="leaves"><img src="./image/leaves/leave1.png" />
@@ -94,7 +96,7 @@
         </div>
     </div>
 
-
+    <!-- 头部区域 -->
     <header>
         <div class="container-wrapper">
             <div class="container">
@@ -120,26 +122,42 @@
 
     </header>
 
+    <!-- 内容区域 -->
     <div class="content-wrapper">
         <section class="content">
-            <!-- 左侧区域 -->
+            <!-- 左侧内容区域 -->
             <div class="content-left">
-
-                <div class="tips">
-                    <div>
-                        <p>欢迎灌水交流，别看我长时间不发博，博主可一直都在线~</p>
-                        <p style="color:#000000cc">友链只交换技术类个人博客。</p>
-                        <p style="color:#000000cc">本站点做了响应式，可兼容各种设备。</p>
-                        <p style="color:#000000cc">不要发广告和不当言论，谢谢。</p>
-                        <p style="color:#000000cc">博主联系:liyuanzhe_cn@163.com</p> &nbsp;
+                <div class="blog-detail" id="blog-detail">
+                    <div class="blog-title">
+                        <h1>
+                            {{title}}
+                        </h1>
                     </div>
+                    <div class="blog-msg">
+                        <span>
+                            作者: 李沅哲 &nbsp;
+                        </span>
+                        <br>
+                        <span>
+                            标签： {{tags}} &nbsp;
+                        </span>
+                        <br>
+                        <span>
+                            发布于： {{ctime}} &nbsp;
+                        </span>
+                        <br>
+                        <span>
+                            浏览： {{views}}
+                        </span>
 
+                    </div>
+                    <div class="blog-content" v-html="content">
+
+                    </div>
                 </div>
 
-
-
                 <div class="comments-list">
-                    <h3>关于：目前有66 条留言</h3>
+                    <h3>关于：目前有{{total}}条留言</h3>
                     <div class="comments">
                         <div class="comment-user">
                             <img class=" user-avatar" width="50" src="./image/115.png" />
@@ -171,10 +189,34 @@
                 </div>
 
 
-            </div>
+                <div class="send-comments">
+                    <h1>发表评论</h1>
+                    <div>
+                        <input type="hidden" ref="reply" id="reply" class="comment-reply" value="-1">
+                        <input type="text" ref="nickname" placeholder="您的昵称" class="comment-contact comment-nickname">
+                        <input type="text" ref="email" placeholder="您的邮箱(评论时会回复邮箱通知)"
+                            class="comment-contact comment-email">
+                    </div>
+                    <div>
+                        <textarea name="" ref="replycontent" placeholder="无意义的内容我可能不会回复你" class="comment-content"
+                            cols="30" rows="10"></textarea>
+                    </div>
+                    <div>
+                        <input type="text" @input="input" v-model="inputCode"
+                            :style="{boxShadow:canSubmit? 'green 1px 1px 4px 0px':'red 1px 1px 4px 0px', transition:'all 0.3s'}"
+                            placeholder="验证码不区分大小写">
+                        <span @click="changeCaptcha" v-html="imgCode" style="position: relative; top:10px;">
 
-            <!-- 右侧区域 -->
+                        </span>
+                    </div>
+                    <button @click="sendComment()"
+                        :style="{width: canSubmit? '200px' :'240px',boxShadow:canSubmit? 'green 1px 1px 4px 0px':'red 1px 1px 4px 0px'}"
+                        :disabled="canSubmit? false:true">{{canSubmit? '可以提交':'验证码未输入或输入不正确'}}</button>
+                </div>
+            </div>
+            <!-- 右侧内容区域 -->
             <div class="content-right">
+
                 <div id="music-player">
                     <div id="image">
                         <div class="image" :style="{backgroundImage: 'url(' + musicList[currentMusic]['image'] + ')'}">
@@ -202,45 +244,36 @@
                     </div>
                 </div>
 
-
                 <div id="random-tags" class="random-tags">
                     <p>随机标签云</p>
                     <div class="tag-container">
-                        <a v-bind:style="{color:randomColor(),margin:'10px 10px', fontSize:randomSize()}"
+                        <a class="animated"
+                            v-bind:style="{color:randomColor(),transform:'perspective(400px) rotateZ('+ (Math.random()*25 -25) +'deg) rotateY('+ (Math.random()*80 - 40) +'deg)',margin:'10px 10px', fontSize:randomSize()}"
                             v-for="(v,k) in tags" href="">{{v}}</a>
                     </div>
                 </div>
 
-                <div class="hot-articles ">
+                <div id="hot-articles" class="hot-articles ">
                     <p>热门文章</p>
                     <ul class="hot-articles-container">
-                        <li><a href="">柯里化详解</a></li>
-                        <li><a href="">面向对象技术</a></li>
-                        <li><a href="">随机函数的妙用</a></li>
-                        <li><a href="">React的项目总结</a></li>
-                        <li><a href="">Vue的Dom diff原理</a></li>
+                        <li v-for="(v,k) in titleList"><a :href="v.link">{{v.title}}</a>
+                        </li>
+
                     </ul>
                 </div>
-                <div class="recent-comments">
+
+                <div id="recent-comments" class="recent-comments">
                     <p>最近评论</p>
-                    <div class="comment-item">
+                    <div v-for="(v,k) in commentsList" class="comment-item">
                         <div class="comment-info">
-                            <span>李沅哲</span>
-                            <span>[14小时前]</span>
+                            <span>{{v.name}}</span>
+                            <span>[{{v.date}}]</span>
                         </div>
                         <div class="comment-content">
-                            <p>写的真好</p>
+                            <p>{{v.comment}}</p>
                         </div>
                     </div>
-                    <div class="comment-item">
-                        <div class="comment-info">
-                            <span>李沅哲</span>
-                            <span>[14小时前]</span>
-                        </div>
-                        <div class="comment-content">
-                            <p>写的真好</p>
-                        </div>
-                    </div>
+
 
                 </div>
                 <div class="friend-links">
@@ -258,9 +291,9 @@
         </section>
     </div>
 
-
+    <!-- 页脚部分 -->
     <footer>
-        <span>李沅哲 ： 一名有理想的前端开发 &copy; 2019 </span>
+        <span>李沅哲 ： 一名有理想的前端开发 &copy; 2019</span>
         <ul class="list-inline">
             <li class="cat-item cat-item-283"><a href="https://www.zh30.com/category/shareexp">分享经验</a></li>
             <li class="cat-item cat-item-63"><a
@@ -286,8 +319,8 @@
         </ul>
     </footer>
 
-
-
+    <!-- <script src="https://cdn.bootcss.com/axios/0.18.0/axios.js"></script> -->
+    <script src="./js/blog_detail.js"></script>
     <script src="./js/base.js"></script>
 </body>
 

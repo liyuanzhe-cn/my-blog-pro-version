@@ -23,14 +23,13 @@
 
   <div class="container">
     <!-- <div class="hero-unit"> -->
-    <h1>文章编辑</h1>
+    <h1>每日一句</h1>
     <div>
-      文章标题： <input id="write-title" type="text">
+      标题： <input id="write-title" type="text">
     </div>
     <div>
       标签： <input id="write-tags" type="text">
     </div>
-
     <div class="btn-toolbar" data-role="editor-toolbar" data-target="#editor">
       <div class="btn-group">
         <a class="btn dropdown-toggle" data-toggle="dropdown" title="Font"><i class="icon-font"></i><b
@@ -93,7 +92,7 @@
     </div>
 
     <div id="editor">
-      Go ahead&hellip;
+
     </div>
     <!-- </div> -->
 
@@ -104,16 +103,45 @@
     $('#submit').on({
       click: () => {
         var confirm = window.confirm("确认提交？");
-        if (confirm) {
+        var notEmpty = emptyCheck();
+        if (confirm && notEmpty) {
           var content = $('#editor').html();
           var title = $('#write-title').val();
-          var tags = $('#write-tags').val().replace('，', ',').split(',')
-          console.log(content, tags, title)
-        }
+          var tags = $('#write-tags').val().replace(/，/g, ',').replace(/ /g, '');
+          console.log(tags, title);
+          $.ajax({
+            url: "/editBlog?tags=" + tags + "&title=" + title,
+            method: 'post',
+            data: { content },
+            success(res) {
+              console.log(res)
+            },
+            fail(res) {
+              console.log(res)
+            }
+          })
 
+        }
       }
     })
-
+    var emptyCheck = function () {
+      var content = $('#editor').html();
+      var title = $('#write-title').val();
+      var tags = $('#write-tags').val().replace('，', ',').split(',');
+      if (content.length < 10) {
+        alert("内容不少于10字");
+        return false;
+      }
+      if (title.length == 0) {
+        alert("标题不少不能为空");
+        return false;
+      }
+      if (tags[0] == '') {
+        alert("标签不能为空");
+        return false;
+      }
+      return true;
+    }
   </script>
   <!-- 富文本编辑器配置文件 -->
   <script>
@@ -157,6 +185,5 @@
     });
   </script>
 
-  <script>!function (d, s, id) { var js, fjs = d.getElementsByTagName(s)[0]; if (!d.getElementById(id)) { js = d.createElement(s); js.id = id; js.src = "http://platform.twitter.com/widgets.js"; fjs.parentNode.insertBefore(js, fjs); } }(document, "script", "twitter-wjs");</script>
 
 </html>

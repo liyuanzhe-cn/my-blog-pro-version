@@ -26,73 +26,103 @@ new Vue({
 })
 
 /**音乐播放器 */
-new Vue({
+var music = new Vue({
     el: '#music-player',
     data: {
-        currentMusic: 1,
+        currentMusic: 0,
         audio: new Audio(),
         currentTime: 0,
         percentage: 0,
         timer: null,
         playing: false,
+        src: '',
         deg: 0,
         musicList: [
             {
-                "image": "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1557147265654&di=0d028315d14069f72113a0a5bdebff0e&imgtype=0&src=http%3A%2F%2Fp1.music.126.net%2FbZa1R51K75wmRsrMD5F8dA%3D%3D%2F109951163094616046.jpg",
-                "audio": "http://se.sycdn.kuwo.cn/04d8ba6f7e092aaeb80180ce62706e1a/5cf3f510/resource/a3/24/88/2280016677.aac",
-                "song": "Melody1",
-                "album": "Melody",
-                "singer": "Cadmium",
-                "duration": 221,
-                "isLike": false
+                "image": "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1559722863895&di=f8d0438fe4dcd17b98b486c8b92ea9db&imgtype=0&src=http%3A%2F%2Fn.sinaimg.cn%2Fsinacn12%2F309%2Fw1200h709%2F20180620%2Fd001-hefphqk1195953.jpg",
+                "audio": "/queryMusic?music=学猫叫.m4a",
+                "song": "学猫叫",
+                "album": "学猫叫",
+                "singer": "小潘潘,小峰峰",
             },
             {
                 "image": "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1557147106191&di=beda36e75c0602746a03b24635bb3b50&imgtype=0&src=http%3A%2F%2Fimg2.soyoung.com%2Ftieba%2Fweb%2F20190114%2F3%2Fd44d0ec8fe54ed589affa5f8fbf79c3c_570.jpg",
-                "audio": "http://se.sycdn.kuwo.cn/04d8ba6f7e092aaeb80180ce62706e1a/5cf3f510/resource/a3/24/88/2280016677.aac",
-                "song": "Melody",
-                "album": "Melody2",
-                "singer": "Cadmium",
-                "duration": 221,
-                "isLike": false
+                "audio": "/queryMusic?music=小小恋歌.aac",
+                "song": "小小恋歌",
+                "album": "小小恋歌.aac",
+                "singer": "新垣结衣",
             },
             {
                 "image": "https://images.genius.com/4bd10dbc6bb093e27c984f863703dd6e.640x640x1.jpg",
-                "audio": "http://se.sycdn.kuwo.cn/04d8ba6f7e092aaeb80180ce62706e1a/5cf3f510/resource/a3/24/88/2280016677.aac",
-                "song": "Melody3",
+                "audio": "/queryMusic?music=Melody.m4a",
+                "song": "Melody",
                 "album": "Melody",
                 "singer": "Cadmium",
-                "duration": 221,
-                "isLike": false
             },
             {
                 "image": "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1557147487355&di=153507d1842c7d6119ae9e5b846c71f6&imgtype=0&src=http%3A%2F%2F5b0988e595225.cdn.sohucs.com%2Fimages%2F20171126%2Fb4b871c6ff4749a0a4cac099de1e33cd.jpeg",
-                "audio": "http://se.sycdn.kuwo.cn/04d8ba6f7e092aaeb80180ce62706e1a/5cf3f510/resource/a3/24/88/2280016677.aac",
-                "song": "Melody4",
-                "album": "Melody",
-                "singer": "Cadmium",
-                "duration": 221,
-                "isLike": false
+                "audio": "/queryMusic?music=带你去旅行.mp3",
+                "song": "带你去旅行",
+                "album": "带你去旅行",
+                "singer": "校长",
             }
         ]
     },
     methods: {
         play() {
+
             if (this.audio.paused) {
+                // 暂停状态下
                 this.playing = true;
-                this.audio.src = this.musicList[this.currentMusic].audio;
+                //判断src
+                // if (!this.src) {
+                //     console.log("音乐播放器首次赋值SRC")
+                //     this.audio.src = window.location.origin + this.musicList[this.currentMusic].audio;
+                //     this.src = this.musicList[this.currentMusic].audio
+                // } else {
+                //     if (this.src !== window.location.origin + this.musicList[this.currentMusic].audio) {
+                //         console.log("音乐路径改变")
+                //         this.audio.src = window.location.origin + this.musicList[this.currentMusic].audio;
+                //         this.src = window.location.origin + Sthis.musicList[this.currentMusic].audio;
+                //     }
+                //     // 
+                // }
+                this.audio.src = window.location.origin + this.musicList[this.currentMusic].audio;
+                console.log(this.audio.seekable)
                 this.audio.currentTime = this.currentTime;
+                console.log(this.currentTime, this.audio.currentTime);
                 this.handle_percentage('set');
                 var promise = this.audio.play();
                 if (promise) {
                     promise.catch((error) => { this.audio.play(); });
                 }
+
+
             } else {
+                // 播放状态下
                 this.playing = false;
                 this.currentTime = this.audio.currentTime;
-                console.log(this.currentTime);
+
+
                 this.handle_percentage('clear');
+
                 this.audio.pause();
+                console.log(this.audio.currentTime);
             }
+        },
+        setBar(e) {
+            ///音乐不播放时，不能设置进度条
+            if (!this.audio.paused) {
+                this.play();
+                var clickX = e.offsetX - 8;
+                var width = e.currentTarget.offsetWidth;
+                var percentage = clickX / width;
+                this.percentage = percentage * 100 + "%";
+                this.currentTime = Object.is(this.audio.duration * percentage, NaN) ? 0 : this.audio.duration * percentage;
+                // console.log(this.percentage, this.currentTime);
+                this.play();
+            }
+
         },
         change(type) {
             this.currentTime = 0;
@@ -126,6 +156,10 @@ new Vue({
                 clearInterval(this.timer)
             }
         }
+    },
+    mounted() {
+        console.log(this.audio)
+        this.audio.preload = "metadata"
     }
 });
 

@@ -132,4 +132,19 @@ table {
 a {
     color: #000000ff;
     text-decoration: none;
+    cursor: url('../../font/Select.cur'), default;
 }
+
+button,
+button:hover {
+    cursor: url('../../font/Select.cur'), default;
+}
+
+/*鼠标样式*/
+html {
+    cursor: url('../../font/Normal.cur'), auto;
+}
+
+/* a {
+    cursor: url('../../font/Select.ani'), pointer;
+} */
