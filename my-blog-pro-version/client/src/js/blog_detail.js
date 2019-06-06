@@ -31,6 +31,7 @@ new Vue({
         var bid = searchJson.bid ? searchJson.bid : -1;
 
         console.log(bid);
+
         (async () => {
             try {
                 var res = await fetch(`/queryBlogById?bid=` + bid);
@@ -69,26 +70,33 @@ new Vue({
     }
 })
 //发送评论
-new Vue({
-    el: ".send-comments",
+var sendComments = new Vue({
+    el: "#send-comments",
     data: {
+        comment_id: -1,
+        comment_user_name: 0,
         imgText: '',
         imgCode: '',
         inputCode: '',
-        canSubmit: false
+        canSubmit: false,
+        update: 0,
     },
     methods: {
         input() {
             this.inputCode.toLowerCase() == this.imgText.toLowerCase() ? this.canSubmit = true : this.canSubmit = false;
         },
         sendComment() {
-            var { reply, nickname, email, replycontent } = this.$refs;
-            console.log(reply, nickname, email, replycontent);
+            var { reply, reply_name, nickname, email, replycontent } = this.$refs;
+            console.log(reply, reply_name, nickname, email, replycontent);
             (async () => {
                 try {
-                    var res = await fetch(`/addComment?bid=${searchJson.bid}&parent=${reply.value}&userName=${nickname.value}&email=${email.value}&content=${replycontent.value}`)
+                    var res = await fetch(`/addComment?bid=${searchJson.bid}&parentName=${reply_name.value}&parent=${reply.value}&userName=${nickname.value}&email=${email.value}&content=${replycontent.value}`)
                     var data = res.json().data;
-                    console.log(data)
+                    console.log(data);
+                    var emptyArr = [reply, nickname, reply_name, email, replycontent];
+                    emptyArr.forEach(ele => {
+                        ele.value = '';
+                    })
                 } catch (e) {
                     console.log(e)
                 }
@@ -120,16 +128,80 @@ new Vue({
     data: {
         total: 100,
         comments: [
-            { id: '1', name: "panda", ctime: "123123123", comments: "aaaaaaaaa" },
-            { id: '2', name: "panda", ctime: "123123123", comments: "aaaaaaaaa" },
-            { id: '3', name: "panda", ctime: "123123123", comments: "aaaaaaaaa" },
         ]
+    },
+    methods: {
+        reply(comment_id, user_name) {
+            sendComments.comment_id = comment_id;
+            sendComments.comment_user_name = user_name;
+        }
     },
     computed() {
 
     },
     created() {
+        (async () => {
+            try {
+                var res = await fetch(`/queryCommentByBlogId?bid=` + searchJson.bid);
+                var json = await res.json();
+                // console.log(json.data);
+                // this.comments = json.data;
+                // var json = json.data.forEach((ele, index) => {
+                //     var time = new Date(ele.ctime * 1000);
+                //     ele.ctime = time.getFullYear() + '年' + (time.getMonth() + 1) + '月' + time.getDay() + '日';
+                // })
+                var data = json.data;
+                var arrMain = [];
+                var arrReply = [];
+                data.forEach((ele, index) => {
+                    var time = new Date(ele.ctime * 1000);
+                    ele.ctime = time.getFullYear() + '年' + (time.getMonth() + 1) + '月' + time.getDay() + '日';
+                    if (ele.parent == -1) {
+                        ele.children = [];
+                        arrMain.push(ele);
+                    } else {
+                        arrReply.push(ele);
+                    }
+                });
+                arrReply.forEach((eleReply, indexReply) => {
+                    arrMain.forEach((eleMain, indexMain) => {
+                        if (eleMain.id == eleReply.parent) {
+                            eleMain.children.push(eleReply);
+                        }
+                    })
+                })
+                this.total = arrMain.length;
+                console.log(arrMain);
+                this.comments = arrMain;
+            } catch (e) {
+                console.log(e);
+            }
+        })();
 
     }
 })
 
+
+// var data = [
+//     { "id": 1, "blog_id": 41, "user_name": "a", "parent": -1, "comment": "c", "ctime": 1559726868, "utime": 1559726743, "email": "b", "parent_name": "0" },
+//     { "id": 2, "blog_id": 41, "user_name": "lyz", "parent": -1, "comment": "lyz", "ctime": 1559731968, "utime": 1559731968, "email": "lyz@lyz.com", "parent_name": "0" },
+//     { "id": 3, "blog_id": 41, "user_name": "鏉庢矃鍝�", "parent": -1, "comment": "FGHJKL;", "ctime": 1559760475, "utime": 1559760475, "email": "DFGHJK", "parent_name": "0" },
+//     { "id": 4, "blog_id": 41, "user_name": "鏉庢矃鍝�", "parent": 2, "comment": "FGHJKL;", "ctime": 1559760514, "utime": 1559760514, "email": "DFGHJK", "parent_name": "lyz" }
+// ];
+// var arrMain = [];
+// var arrReply = [];
+// data.forEach((ele, index) => {
+//     if (ele.parent == -1) {
+//         ele.children = [];
+//         arrMain.push(ele);
+//     } else {
+//         arrReply.push(ele);
+//     }
+// });
+// arrReply.forEach((eleReply, indexReply) => {
+//     arrMain.forEach((eleMain, indexMain) => {
+//         if (eleMain.id == eleReply.parent) {
+//             eleMain.children.push(eleReply);
+//         }
+//     })
+// })

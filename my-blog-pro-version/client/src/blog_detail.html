@@ -156,43 +156,46 @@
                     </div>
                 </div>
 
-                <div class="comments-list">
+                <div class="comments-list" id="comments-list">
                     <h3>关于：目前有{{total}}条留言</h3>
-                    <div class="comments">
+                    <div class="comments" v-for="(v,k) in comments">
                         <div class="comment-user">
                             <img class=" user-avatar" width="50" src="./image/115.png" />
-                            <strong>许寒</strong>
-                            <span class="publish-date">发表于 2019年02月13日 20:49</span>
-                            <span class="response">[回复]</span>
-                        </div>
-                        <div class="comment-content">
-                            这个是第一条评论
-                        </div>
-                        <div class="response">
-                            <!--  回复放在这里 -->
-                            <div class="comments">
-                                <div class="comment-user">
-                                    <img class=" user-avatar" width="50" src="./image/115.png" />
-                                    <strong>许寒</strong>
-                                    <span class="publish-date">发表于 2019年02月13日 20:49</span>
-                                    <span class="response">[回复]</span>
-                                </div>
-                                <div class="comment-content">
-                                    这个是第一条评论
-                                </div>
-                                <div class="response">
+                            <strong>{{v.user_name}}</strong>
+                            <span class="publish-date">发表于{{v.ctime}}</span>
+                            <span class="response"><a @click="reply(v.id, v.user_name)"
+                                    href="#send-comments">[回复]</a></span>
+                            <div class="comment-content">
+                                {{v.comment}}{{v.children[0] && v.children[0].comment}}
+                            </div>
 
-                                </div>
+                        </div>
+                        <!-- 回复区域 -->
+                        <div v-for="(vr,kr) in comments[k].children" class="reply">
+                            <img class=" user-avatar" width="50" src="./image/115.png" />
+                            <strong>{{vr.user_name}}</strong>
+                            <span class="publish-date">发表于{{vr.ctime}}</span>
+                            <span class="response"><a @click="reply(v.id, v.user_name)"
+                                    href="#send-comments">[回复]</a></span>
+                            <div class="comment-content">
+                                {{vr.comment}}
                             </div>
                         </div>
                     </div>
                 </div>
 
 
-                <div class="send-comments">
-                    <h1>发表评论</h1>
+
+
+                <div class="send-comments" id="send-comments">
+                    <h1>{{comment_id != -1 ? ('回复'+ comment_user_name +'的评论'):'发表评论'}}</h1>
                     <div>
-                        <input type="hidden" ref="reply" id="reply" class="comment-reply" value="-1">
+                        <input type="hidden" ref="reply" id="reply" class="comment-reply" v-model="comment_id">
+                        <input type="hidden" ref="reply_name" id="reply_name" class="comment-reply-name"
+                            v-model="comment_user_name">
+
+
+
                         <input type="text" ref="nickname" placeholder="您的昵称" class="comment-contact comment-nickname">
                         <input type="text" ref="email" placeholder="您的邮箱(评论时会回复邮箱通知)"
                             class="comment-contact comment-email">

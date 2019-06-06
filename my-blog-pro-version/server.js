@@ -5,6 +5,8 @@ const loader = require('./loader');
 const fs = require('fs');
 
 //get 类
+server.get('/queryCommentCountByBlogId', loader.get('/queryCommentCountByBlogId'));
+server.get('/queryCommentByBlogId', loader.get('/queryCommentByBlogId'));
 server.get('/queryMusic', loader.get('/queryMusic'));
 server.get('/queryCaptcha', loader.get('/queryCaptcha'));
 server.get('/addComment', loader.get('/addComment'));
@@ -12,6 +14,7 @@ server.get('/queryBlogCount', loader.get('/queryBlogCount'));
 server.get('/queryBlogById', loader.get('/queryBlogById'));
 server.get('/getEveryDay', loader.get('/getEveryDay'));
 server.get('/queryBlogByPage', loader.get('/queryBlogByPage'));
+
 
 //post 类
 server.post('/editBlog', loader.get('/editBlog'));

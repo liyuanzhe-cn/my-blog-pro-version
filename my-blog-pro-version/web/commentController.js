@@ -8,13 +8,14 @@ var { getNow } = require('../util/timeUtil');
 const captcha = require('svg-captcha');
 
 
-// 编辑博客
+// 添加评论
 function addComment(request, response) {
     var params = url.parse(request.url, true).query;
-    const { bid, parent, userName, email, content } = params;
+    const { bid, parent, parentName, userName, email, content } = params;
     commentDAO.addComment(
         bid,
         parent,
+        parentName,
         userName,
         email,
         content,
@@ -28,6 +29,7 @@ function addComment(request, response) {
     )
 }
 
+// 获取验证码
 function queryCaptcha(request, response) {
     var img = captcha.create({
         fontSize: 50,
@@ -37,12 +39,37 @@ function queryCaptcha(request, response) {
     response.writeHead(200);
     response.write(writeResult('success', '验证码获取成功', img));
     response.end();
+}
 
+function queryCommentByBlogId(request, response) {
+    var params = url.parse(request.url, true).query;
+    const { bid } = params;
+    commentDAO.queryCommentByBlogId(
+        bid,
+        function (result) {
+            response.writeHead(200);
+            response.write(writeResult('success', '发表成功', result));
+            response.end();
+        }
+    )
 }
 
 
+function queryCommentCountByBlogId(request, response) {
+    var params = url.parse(request.url, true).query;
+    const { bid } = params;
+    commentDAO.queryCommentCountByBlogId(
+        bid,
+        function (result) {
+            response.writeHead(200);
+            response.write(writeResult('success', '发表成功', result));
+            response.end();
+        }
+    )
+}
 
-
+path.set('/queryCommentCountByBlogId', queryCommentCountByBlogId);
+path.set('/queryCommentByBlogId', queryCommentByBlogId);
 path.set('/queryCaptcha', queryCaptcha);
 path.set('/addComment', addComment);
 module.exports.path = path;

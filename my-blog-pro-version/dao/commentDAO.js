@@ -1,11 +1,11 @@
 var dbutil = require('./DButil');
 
 // 添加评论
-function addComment(blogId, parent, userName, email, comment, ctime, utime, success) {
+function addComment(blogId, parent, parentName, userName, email, comment, ctime, utime, success) {
     console.log(blogId, parent, userName, email, ctime, utime)
-    var insertSQL = "insert into comments (`blog_id`,`parent`,`user_name`,`email`,`comment`, `ctime`, `utime`) value (?,?,?,?,?,?,?)";
+    var insertSQL = "insert into comments (`blog_id`,`parent`,`parent_name`,`user_name`,`email`,`comment`, `ctime`, `utime`) value (?,?,?,?,?,?,?,?)";
 
-    const params = [blogId, parent, userName, email, comment, ctime, utime];
+    const params = [blogId, parent, parentName, userName, email, comment, ctime, utime];
 
     var connection = dbutil.createConnection();
 
@@ -23,46 +23,11 @@ function addComment(blogId, parent, userName, email, comment, ctime, utime, succ
 
 }
 
-function queryBlogByPage(page, pageSize, success) {
-    console.log('数据库查找中')
-    var selectSQL = `select * from blog order by id desc limit ?,?`;
-    var params = [page * pageSize, pageSize];
-
-    var connection = dbutil.createConnection();
-    connection.connect();
-    connection.query(selectSQL, params, (err, result) => {
-        if (!err) {
-            success(result);
-        } else {
-            console.log(err);
-        }
-    });
-    connection.end();
-
-}
-
-function queryBlogCount(success) {
-    console.log('获取总数')
-    var selectSQL = `select count(1) from blog`;
-    var params = [];
-    var connection = dbutil.createConnection();
-    connection.connect();
-    connection.query(selectSQL, params, (err, result) => {
-        if (!err) {
-            success(result);
-        } else {
-            console.log(err);
-        }
-    });
-    connection.end();
-
-}
 
 
-function queryBlogById(id, success) {
-    console.log('获取某一篇博客')
-    var selectSQL = `select * from blog where id = ?;`;
-    var params = [id];
+function queryCommentCountByBlogId(blog_id, success) {
+    var selectSQL = `select count(1) from comments where blog_id = ?`;
+    var params = [blog_id];
     var connection = dbutil.createConnection();
     connection.connect();
     connection.query(selectSQL, params, (err, result) => {
@@ -75,4 +40,20 @@ function queryBlogById(id, success) {
     connection.end();
 }
 
-module.exports = { addComment };
+
+function queryCommentByBlogId(blog_id, success) {
+    var selectSQL = `select * from comments where blog_id = ?;`;
+    var params = [blog_id];
+    var connection = dbutil.createConnection();
+    connection.connect();
+    connection.query(selectSQL, params, (err, result) => {
+        if (!err) {
+            success(result);
+        } else {
+            console.log(err);
+        }
+    });
+    connection.end();
+}
+
+module.exports = { addComment, queryCommentByBlogId, queryCommentCountByBlogId };
