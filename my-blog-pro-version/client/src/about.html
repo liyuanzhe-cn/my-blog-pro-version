@@ -111,10 +111,10 @@
                         <li class="animated"><a href="/guestbook.html">留言</a></li>
                     </ul>
                 </div>
-                <div class="search">
+                <!-- <div class="search">
                     <input type="text" placeholder="输入关键词">
                     <input type="button" value="搜索🔍">
-                </div>
+                </div> -->
             </div>
         </div>
 
@@ -129,7 +129,7 @@
                     <h2>关于我</h2>
                     <hr>
                     <p>博主:<a href="">李沅哲</a></p>
-                    <p>本来是一名葡语英语翻译（外贸狗）<br>
+                    <p>曾经是一名葡语英语翻译（外贸狗）<br>
                         偶然在网上接触到WEB开发<br>
                         让我产生了浓厚的兴趣<br>
                         从此开始我的WEB前端开发生涯<br>
@@ -270,37 +270,67 @@
 
 
 
-                <div class="comments-list">
-                    <h3>关于：目前有66 条留言</h3>
-                    <div class="comments">
+                <div class="comments-list" id="comments-list">
+                    <h3>关于：目前有{{total}}条留言</h3>
+                    <div class="comments" v-for="(v,k) in comments">
                         <div class="comment-user">
                             <img class=" user-avatar" width="50" src="./image/115.png" />
-                            <strong>许寒</strong>
-                            <span class="publish-date">发表于 2019年02月13日 20:49</span>
-                            <span class="response">[回复]</span>
-                        </div>
-                        <div class="comment-content">
-                            这个是第一条评论
-                        </div>
-                        <div class="response">
-                            <!--  回复放在这里 -->
-                            <div class="comments">
-                                <div class="comment-user">
-                                    <img class=" user-avatar" width="50" src="./image/115.png" />
-                                    <strong>许寒</strong>
-                                    <span class="publish-date">发表于 2019年02月13日 20:49</span>
-                                    <span class="response">[回复]</span>
-                                </div>
-                                <div class="comment-content">
-                                    这个是第一条评论
-                                </div>
-                                <div class="response">
+                            <strong>{{v.user_name}}</strong>
+                            <span>[&nbsp;&nbsp;{{k+1}}楼&nbsp;&nbsp;]</span>
+                            <span class="publish-date">发表于{{v.ctime}}</span>
+                            <span class="response"><a @click="reply(v.id, v.user_name, k)"
+                                    href="#send-comments">[回复]</a></span>
+                            <div class="comment-content">
+                                {{v.comment}}{{v.children[0] && v.children[0].comment}}
+                            </div>
 
-                                </div>
+                        </div>
+                        <!-- 回复区域 -->
+                        <div v-for="(vr,kr) in comments[k].children" class="reply">
+                            <img class=" user-avatar" src="./image/115.png" />
+                            <strong>{{vr.user_name}}</strong>
+                            <span class="publish-date">回复于{{vr.ctime}}</span>
+                            <!-- <span class="response"><a @click="reply(v.id, v.user_name)"
+                                                    href="#send-comments">回复</a></span> -->
+                            <div class="comment-content">
+                                {{vr.comment}}
                             </div>
                         </div>
                     </div>
                 </div>
+                <!-- 回复 -->
+                <div class="send-comments" id="send-comments">
+                    <h1>{{comment_id != -1 ? ('回复 '+ floor +'楼 '+ comment_user_name +'的评论'):'发表评论'}}
+                        <button v-if="comment_id !=-1" @click="switchToComment">{{"转为评论模式"}}</button>
+                    </h1>
+                    <div>
+                        <input type="hidden" ref="reply" id="reply" class="comment-reply" v-model="comment_id">
+                        <input type="hidden" ref="reply_name" id="reply_name" class="comment-reply-name"
+                            v-model="comment_user_name">
+
+
+
+                        <input type="text" ref="nickname" placeholder="您的昵称" class="comment-contact comment-nickname">
+                        <input type="text" ref="email" placeholder="您的邮箱(评论时会回复邮箱通知)"
+                            class="comment-contact comment-email">
+                    </div>
+                    <div>
+                        <textarea name="" ref="replycontent" placeholder="无意义的内容我可能不会回复你" class="comment-content"
+                            cols="30" rows="10"></textarea>
+                    </div>
+                    <div>
+                        <input type="text" @input="input" v-model="inputCode"
+                            :style="{boxShadow:canSubmit? 'green 1px 1px 4px 0px':'red 1px 1px 4px 0px', transition:'all 0.3s'}"
+                            placeholder="验证码不区分大小写">
+                        <span @click="changeCaptcha" v-html="imgCode" style="position: relative; top:10px;">
+
+                        </span>
+                    </div>
+                    <button @click="sendComment()"
+                        :style="{width: canSubmit? '200px' :'240px',boxShadow:canSubmit? 'green 1px 1px 4px 0px':'red 1px 1px 4px 0px'}"
+                        :disabled="canSubmit? false:true">{{canSubmit? '可以提交':'验证码未输入或输入不正确'}}</button>
+                </div>
+
 
 
             </div>
@@ -338,43 +368,36 @@
                 <div id="random-tags" class="random-tags">
                     <p>随机标签云</p>
                     <div class="tag-container">
-                        <a v-bind:style="{color:randomColor(),margin:'10px 10px', fontSize:randomSize()}"
-                            v-for="(v,k) in tags" href="">{{v}}</a>
+                        <a class="animated"
+                            v-bind:style="{color:randomColor(),transform:' rotateZ('+ (Math.random()*50 -25) +'deg) rotateY('+ (Math.random()*50 - 25) +'deg)',margin:'10px 10px', fontSize:randomSize()}"
+                            v-for="(v,k) in tags" :href="'/index.html?tag=' + v.id">
+                            {{v.tags}}
+                        </a>
                     </div>
                 </div>
                 <!-- 热门文章标题 -->
-                <div class="hot-articles ">
+                <div id="hot-articles" class="hot-articles ">
                     <p>热门文章</p>
                     <ul class="hot-articles-container">
-                        <li><a href="">柯里化详解</a></li>
-                        <li><a href="">面向对象技术</a></li>
-                        <li><a href="">随机函数的妙用</a></li>
-                        <li><a href="">React的项目总结</a></li>
-                        <li><a href="">Vue的Dom diff原理</a></li>
+                        <li v-for="(v,k) in titleList"><a :href="v.link">{{v.title}}</a></li>
                     </ul>
                 </div>
-                <div class="recent-comments">
-                    <p>最近评论</p>
-                    <div class="comment-item">
-                        <div class="comment-info">
-                            <span>李沅哲</span>
-                            <span>[14小时前]</span>
-                        </div>
-                        <div class="comment-content">
-                            <p>写的真好</p>
-                        </div>
-                    </div>
-                    <div class="comment-item">
-                        <div class="comment-info">
-                            <span>李沅哲</span>
-                            <span>[14小时前]</span>
-                        </div>
-                        <div class="comment-content">
-                            <p>写的真好</p>
-                        </div>
-                    </div>
 
+                <div id="recent-comments" class="recent-comments">
+                    <p>最近评论</p>
+                    <div v-for="(v,k) in commentsList" class="comment-item">
+                        <div class="comment-info">
+                            <span>{{v.user_name}}</span>
+                            <span>[{{v.ctime}}]</span>
+                        </div>
+                        <div class="comment-content">
+                            <p>{{v.comment}}</p>
+                        </div>
+                    </div>
                 </div>
+
+
+
                 <div class="friend-links">
                     <p>友情链接</p>
                     <ul>

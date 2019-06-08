@@ -33,8 +33,9 @@ function addComment(request, response) {
 function queryCaptcha(request, response) {
     var img = captcha.create({
         fontSize: 50,
-        width: 100,
-        height: 30
+        width: 130,
+        height: 40,
+        size: 5
     });
     response.writeHead(200);
     response.write(writeResult('success', '验证码获取成功', img));
@@ -56,10 +57,7 @@ function queryCommentByBlogId(request, response) {
 
 
 function queryCommentCountByBlogId(request, response) {
-    var params = url.parse(request.url, true).query;
-    const { bid } = params;
-    commentDAO.queryCommentCountByBlogId(
-        bid,
+    commentDAO.queryRecentComments(
         function (result) {
             response.writeHead(200);
             response.write(writeResult('success', '发表成功', result));
@@ -68,6 +66,16 @@ function queryCommentCountByBlogId(request, response) {
     )
 }
 
+function queryRecentComments(request, response) {
+    commentDAO.queryRecentComments(
+        function (result) {
+            response.writeHead(200);
+            response.write(writeResult('success', '发表成功', result));
+            response.end();
+        }
+    )
+}
+path.set('/queryRecentComments', queryRecentComments);
 path.set('/queryCommentCountByBlogId', queryCommentCountByBlogId);
 path.set('/queryCommentByBlogId', queryCommentByBlogId);
 path.set('/queryCaptcha', queryCaptcha);

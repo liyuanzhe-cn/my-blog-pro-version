@@ -1,9 +1,13 @@
+a {
+    user-select: none;
+}
+
 .bread-wrapper {
     width: 80vw;
     margin: 0 auto;
     position: relative;
     z-index: 10;
-    background-color: #ffffffdd;
+    background-color: #ffffffee;
     margin-top: 10px;
     padding: 15px 20px;
     box-sizing: border-box;
@@ -15,17 +19,18 @@
     margin: 0 auto;
     position: relative;
     z-index: 10;
-    background-color: #ffffffdd;
+    background-color: #ffffffee;
     margin-top: 10px;
     padding: 15px 20px;
     box-sizing: border-box;
     border-radius: 5px;
+
 }
 
 .content-wrapper .content>p {
     font-size: 24px;
     margin: 15px 0;
-
+    user-select: none;
 }
 
 .content-wrapper .content .article-list {
@@ -35,6 +40,7 @@
 .content-wrapper .content .article-list li {
     font-size: 16px;
     margin: 10px 0;
+
 }
 
 @media screen and (max-width:850px) {

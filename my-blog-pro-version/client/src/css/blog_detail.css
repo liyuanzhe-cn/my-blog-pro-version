@@ -73,6 +73,7 @@ section.content .content-left #blog-detail .blog-msg span {
     line-height: 24px;
     font-size: 16px;
     padding-left: 10px;
+
 }
 
 section.content .content-left #blog-detail .blog-content {
@@ -92,6 +93,7 @@ section.content .content-left .article-list .article-body {
     user-select: text;
 }
 
+/* 发送评论*/
 section.content .content-left .send-comments {
     margin-top: 10px;
     background-color: #ffffffdd;
@@ -165,20 +167,33 @@ section.content .content-left .comments-list h3 {
 }
 
 
+
 section.content .content-left .comments-list .comment-user {
     height: 50px;
     margin: 5px 0;
 
 }
 
-section.content .content-left .comments-list .comment-user span {
-    font-size: 16px;
+section.content .content-left .comments-list .comment-user span,
+section.content .content-left .comments-list .reply span {
+    font-size: 13px;
 }
 
 section.content .content-left .comments-list .comment-user img {
-    width: 40px;
+    width: 35px;
     vertical-align: middle;
     border-radius: 50%;
+}
+
+section.content .content-left .comments-list .reply {
+    margin-top: 10px;
+    padding-left: 10%;
+    padding-right: 20%;
+}
+
+section.content .content-left .comments-list .reply img {
+    width: 25px;
+    vertical-align: middle;
 }
 
 section.content .content-left .comments-list .comment-content {

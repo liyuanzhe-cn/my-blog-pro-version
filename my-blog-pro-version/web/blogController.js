@@ -12,6 +12,7 @@ function queryBlogByPage(request, response) {
     var params = url.parse(request.url, true).query;
     blogDAO.queryBlogByPage(parseInt(params.page), parseInt(params.pageSize), function (result) {
         response.writeHead(200);
+
         response.write(writeResult('success', '查询成功', result));
         response.end();
     })
@@ -95,9 +96,93 @@ function queryBlogById(request, response) {
         response.writeHead(200);
         response.write(writeResult('success', '查询成功', result));
         response.end();
+        blogDAO.addViews(blogId.bid, function (result) {
+
+        });
     })
 }
 
+function queryAllBlog(request, response) {
+    blogDAO.queryAllBlog(function (result) {
+        response.writeHead(200);
+        response.write(writeResult('success', '查询成功', result));
+        response.end();
+    })
+}
+
+function queryHotBlog(request, response) {
+    var params = url.parse(request.url, true).query;
+    blogDAO.queryHotBlog(+params.size, function (result) {
+        response.writeHead(200);
+        response.write(writeResult('success', '查询成功', result));
+        response.end();
+    })
+}
+
+
+
+
+
+function queryBlogByTag(request, response) {
+    var params = url.parse(request.url, true).query;
+    console.log(params)
+    tagsBlogMappingDao.queryBlogByTag(parseInt(params.tagId), parseInt(params.page), parseInt(params.pageSize), function (result) {
+        if (result == null || result.length == 0) {
+            response.writeHead(200);
+            // console.log(result);
+            response.write(writeResult('success', '查询成功', result));
+            response.end();
+        } else {
+            // 返回给前端的博客列表
+            var blogList = [];
+            // 异步执行队列
+            promiseList = [];
+            // 逐次加入异步执行队列
+            result.forEach(ele => {
+                // console.log(ele.blog_id);
+                // 异步处理
+                promiseList.push(
+                    new Promise((resolve, reject) => {
+                        blogDAO.queryBlogById(ele.blog_id, function (searchByIdResult) {
+                            // console.log(searchByIdResult)
+                            blogList.push(searchByIdResult[0]);
+                            resolve();
+                        })
+                    })
+                )
+            });
+            // 当全部promise都执行成功后返回给前端
+            Promise.all(promiseList).then(() => {
+                response.writeHead(200);
+                // console.log(blogList);
+                response.write(writeResult('success', '查询成功', blogList));
+                response.end();
+            })
+
+
+        }
+
+    })
+}
+
+function queryBlogCountByTag(request, response) {
+    var params = url.parse(request.url, true).query;
+    console.log(params);
+    blogDAO.queryBlogCountByTag(parseInt(params.tag), function (result) {
+        response.writeHead(200);
+        response.write(writeResult('success', '查询成功', result));
+        response.end();
+    })
+}
+
+
+
+path.set('/queryBlogByTag', queryBlogByTag);
+path.set('/queryBlogCountByTag', queryBlogCountByTag);
+
+
+path.set('/queryHotBlog', queryHotBlog);
+path.set('/queryAllBlog', queryAllBlog);
 path.set('/queryBlogById', queryBlogById);
 path.set('/queryBlogCount', queryBlogCount);
 path.set('/editBlog', editBlog);

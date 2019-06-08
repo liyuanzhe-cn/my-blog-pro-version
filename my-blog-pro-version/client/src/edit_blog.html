@@ -17,13 +17,21 @@
   <script src="./bootstrap-wysiwyg-master/external/google-code-prettify/prettify.js"></script>
   <link href="./bootstrap-wysiwyg-master/index.css" rel="stylesheet">
   <script src="./bootstrap-wysiwyg-master/bootstrap-wysiwyg.js"></script>
+  <script>
+    //登陆判断
+    var token = localStorage.getItem('token');
+    if (!token) {
+      alert('您未登录');
+      window.location.href = '/admin.html';
+    }
+  </script>
 </head>
 
 <body>
 
   <div class="container">
     <!-- <div class="hero-unit"> -->
-    <h1>每日一句</h1>
+    <h1>编辑博客</h1>
     <div>
       标题： <input id="write-title" type="text">
     </div>

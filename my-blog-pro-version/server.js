@@ -14,7 +14,13 @@ server.get('/queryBlogCount', loader.get('/queryBlogCount'));
 server.get('/queryBlogById', loader.get('/queryBlogById'));
 server.get('/getEveryDay', loader.get('/getEveryDay'));
 server.get('/queryBlogByPage', loader.get('/queryBlogByPage'));
-
+server.get('/queryAllBlog', loader.get('/queryAllBlog'));
+server.get('/queryAllTags', loader.get("/queryAllTags"));
+server.get('/queryRandomTags', loader.get('/queryRandomTags'));
+server.get('/queryRecentComments', loader.get('/queryRecentComments'));
+server.get('/queryHotBlog', loader.get('/queryHotBlog'));
+server.get('/queryBlogByTag', loader.get('/queryBlogByTag'));
+server.get("/queryBlogCountByTag", loader.get("/queryBlogCountByTag"))
 
 //post 类
 server.post('/editBlog', loader.get('/editBlog'));

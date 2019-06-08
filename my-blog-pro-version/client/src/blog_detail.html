@@ -162,8 +162,9 @@
                         <div class="comment-user">
                             <img class=" user-avatar" width="50" src="./image/115.png" />
                             <strong>{{v.user_name}}</strong>
+                            <span>[&nbsp;&nbsp;{{k+1}}楼&nbsp;&nbsp;]</span>
                             <span class="publish-date">发表于{{v.ctime}}</span>
-                            <span class="response"><a @click="reply(v.id, v.user_name)"
+                            <span class="response"><a @click="reply(v.id, v.user_name, k)"
                                     href="#send-comments">[回复]</a></span>
                             <div class="comment-content">
                                 {{v.comment}}{{v.children[0] && v.children[0].comment}}
@@ -172,23 +173,22 @@
                         </div>
                         <!-- 回复区域 -->
                         <div v-for="(vr,kr) in comments[k].children" class="reply">
-                            <img class=" user-avatar" width="50" src="./image/115.png" />
+                            <img class=" user-avatar" src="./image/115.png" />
                             <strong>{{vr.user_name}}</strong>
-                            <span class="publish-date">发表于{{vr.ctime}}</span>
-                            <span class="response"><a @click="reply(v.id, v.user_name)"
-                                    href="#send-comments">[回复]</a></span>
+                            <span class="publish-date">回复于{{vr.ctime}}</span>
+                            <!-- <span class="response"><a @click="reply(v.id, v.user_name)"
+                                    href="#send-comments">回复</a></span> -->
                             <div class="comment-content">
                                 {{vr.comment}}
                             </div>
                         </div>
                     </div>
                 </div>
-
-
-
-
+                <!-- 回复 -->
                 <div class="send-comments" id="send-comments">
-                    <h1>{{comment_id != -1 ? ('回复'+ comment_user_name +'的评论'):'发表评论'}}</h1>
+                    <h1>{{comment_id != -1 ? ('回复 '+ floor +'楼 '+ comment_user_name +'的评论'):'发表评论'}}
+                        <button v-if="comment_id !=-1" @click="switchToComment">{{"转为评论模式"}}</button>
+                    </h1>
                     <div>
                         <input type="hidden" ref="reply" id="reply" class="comment-reply" v-model="comment_id">
                         <input type="hidden" ref="reply_name" id="reply_name" class="comment-reply-name"
@@ -216,6 +216,8 @@
                         :style="{width: canSubmit? '200px' :'240px',boxShadow:canSubmit? 'green 1px 1px 4px 0px':'red 1px 1px 4px 0px'}"
                         :disabled="canSubmit? false:true">{{canSubmit? '可以提交':'验证码未输入或输入不正确'}}</button>
                 </div>
+
+
             </div>
             <!-- 右侧内容区域 -->
             <div class="content-right">

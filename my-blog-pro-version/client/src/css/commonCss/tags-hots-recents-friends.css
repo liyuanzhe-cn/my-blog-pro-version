@@ -226,21 +226,30 @@ section.content .content-right .recent-comments>p {
 
 section.content .content-right .recent-comments .comment-item {
     margin: 0 0 15px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
 }
+
+section.content .content-right .recent-comments .comment-item:nth-last-of-type(1) {
+    border-bottom: none;
+}
+
 
 section.content .content-right .recent-comments .comment-item .comment-info {
     width: 80%;
     display: flex;
+
+    margin-bottom: 12px;
     justify-content: space-between;
 }
 
 section.content .content-right .recent-comments .comment-item .comment-info span {
-    font-size: 18px;
+    font-size: 15px;
+    font-weight: 600;
 }
 
 section.content .content-right .recent-comments .comment-item .comment-content {
     margin: 7px 0;
-    font-size: 16px;
+    font-size: 12px;
 }
 
 

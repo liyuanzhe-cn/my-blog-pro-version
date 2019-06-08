@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="utf-8">
-  <title>编辑博客</title>
+  <title>每日一句</title>
   <!-- <link rel="apple-touch-icon" href="//mindmup.s3.amazonaws.com/lib/img/apple-touch-icon.png" /> -->
   <!-- <link rel="shortcut icon" href="http://mindmup.s3.amazonaws.com/lib/img/favicon.ico"> -->
   <link href="./bootstrap-wysiwyg-master/external/google-code-prettify/prettify.css" rel="stylesheet">
@@ -17,6 +17,14 @@
   <script src="./bootstrap-wysiwyg-master/external/google-code-prettify/prettify.js"></script>
   <link href="./bootstrap-wysiwyg-master/index.css" rel="stylesheet">
   <script src="./bootstrap-wysiwyg-master/bootstrap-wysiwyg.js"></script>
+  <script>
+    //登陆判断
+    var token = localStorage.getItem('token');
+    if (!token) {
+      alert('您未登录');
+      window.location.href = '/admin.html';
+    }
+  </script>
 </head>
 
 <body>

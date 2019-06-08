@@ -2,7 +2,7 @@
 new Vue({
     el: '#random-tags',
     data: {
-        tags: ["数组", "面向对象", "NODEJS", "REACT", "VUE", "ANGULAR", "TYPESCRIPT"]
+        tags: []
     },
     computed: {
         randomColor: () => {
@@ -20,8 +20,17 @@ new Vue({
             }
         }
     },
-    methods: {
-
+    created() {
+        (async () => {
+            try {
+                var res = await fetch(`/queryAllTags`);
+                var data = await res.json();
+                // { "id": 4, "tags": "测试", "ctime": 1559561784, "utime": 1559561784 }
+                this.tags = data.data;
+            } catch (e) {
+                console.log(e);
+            }
+        })();
     }
 })
 
@@ -180,6 +189,19 @@ new Vue({
         ]
     },
     created() {
+        (async () => {
+            try {
+                var res = await fetch(`/queryHotBlog?size=10`);
+                var data = await res.json();
+                console.log(data.data)
+                data.data.forEach((ele) => {
+                    ele.link = `/blog_detail.html?bid=` + ele.id
+                })
+                this.titleList = data.data;
+            } catch (e) {
+
+            }
+        })();
 
     }
 })
@@ -202,6 +224,22 @@ new Vue({
         ]
     },
     created() {
+        (async () => {
+            try {
+                var res = await fetch(`/queryRecentComments`);
+                var data = await res.json();
 
+                data.data.forEach((ele, index) => {
+                    var time = new Date(ele.ctime);
+                    ele.ctime = time.getFullYear() + '年' + (time.getMonth() + 1) + '月' + time.getDay() + '日 ' + time.getHours() + ':' + time.getMinutes();
+                })
+                console.log('最近评论', data.data)
+                this.commentsList = data.data;
+
+            } catch (e) {
+                console.log(e)
+            }
+
+        })();
     }
 })

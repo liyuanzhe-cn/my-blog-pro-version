@@ -113,10 +113,10 @@
                                                 <li class="animated"><a href="/guestbook.html">留言</a></li>
                                         </ul>
                                 </div>
-                                <div class="search">
+                                <!-- <div class="search">
                                         <input type="text" placeholder="输入关键词">
                                         <input type="button" value="搜索🔍">
-                                </div>
+                                </div> -->
                         </div>
                 </div>
 
@@ -133,6 +133,7 @@
                                         <cite class="text-right" v-html="getAuthor"></cite>
                                 </div>
                                 <div id="article-list">
+
                                         <div class="article-list" v-for="(value, key) in articleList">
                                                 <div class="article-title">
                                                         <a v-bind:href="value.link">
@@ -198,16 +199,20 @@
                                         <div class="tag-container">
                                                 <a class="animated"
                                                         v-bind:style="{color:randomColor(),transform:'rotateZ('+ (Math.random()*25 -25) +'deg) rotateY('+ (Math.random()*50 -50) +'deg)',margin:'10px 10px', fontSize:randomSize()}"
-                                                        v-for="(v,k) in tags" href="">{{v}}</a>
+                                                        v-for="(v,k) in tags"
+                                                        :href="'/index.html?tagId=' + v.id+'&tag=' + v.tags">
+                                                        {{v.tags}}
+                                                </a>
                                         </div>
                                 </div>
 
+                                <!-- 热门文章标题 -->
                                 <div id="hot-articles" class="hot-articles ">
                                         <p>热门文章</p>
                                         <ul class="hot-articles-container">
-                                                <li v-for="(v,k) in titleList"><a :href="v.link">{{v.title}}</a>
+                                                <li v-for="(v,k) in titleList"><a
+                                                                :href="'/blog_detail.html?bid=' + v.id">{{v.title}}</a>
                                                 </li>
-
                                         </ul>
                                 </div>
 
@@ -215,24 +220,15 @@
                                         <p>最近评论</p>
                                         <div v-for="(v,k) in commentsList" class="comment-item">
                                                 <div class="comment-info">
-                                                        <span>{{v.name}}</span>
-                                                        <span>[{{v.date}}]</span>
+                                                        <span>{{v.user_name}}</span>
+                                                        <span>[{{v.ctime}}]</span>
                                                 </div>
                                                 <div class="comment-content">
                                                         <p>{{v.comment}}</p>
                                                 </div>
                                         </div>
-                                        <!-- <div class="comment-item">
-                                                <div class="comment-info">
-                                                        <span>李沅哲</span>
-                                                        <span>[14小时前]</span>
-                                                </div>
-                                                <div class="comment-content">
-                                                        <p>写的真好</p>
-                                                </div>
-                                        </div> -->
-
                                 </div>
+
                                 <div class="friend-links">
                                         <p>友情链接</p>
                                         <ul>
@@ -252,8 +248,9 @@
         <footer>
                 <span>李沅哲 ： 一名有理想的前端开发 &copy; 2019</span>
                 <br>
-                <span>本站暂未考虑支持IE和部分国产浏览器，请使用火狐，chrome，safari, 关于本站更多技术问题，请戳 <a href="/tec.html"
+                <span>本站暂未考虑支持Trident内核的浏览器，请使用火狐，chrome，safari, 关于本站更多技术问题，请戳 <a href="/tec.html"
                                 style="color:aliceblue">这里</a></span>
+                <br>
                 <ul class="list-inline">
                         <li class="cat-item cat-item-283"><a href="https://www.zh30.com/category/shareexp">分享经验</a></li>
                         <li class="cat-item cat-item-63"><a

@@ -23,7 +23,7 @@ section.content {
 section.content .content-left,
 section.content .content-right {
     /* background-color: #ffffff70; */
-    box-shadow: #00000050 1px 1px 3px 1px;
+    /* box-shadow: #00000050 1px 1px 3px 1px; */
     box-sizing: border-box;
     border-radius: 5px;
     /* border: 1px solid #fff; */
@@ -64,12 +64,69 @@ section.content .content-left .tips p {
 
 
 /*评论区*/
+section.content .content-left .send-comments {
+    margin-top: 10px;
+    background-color: #ffffffdd;
+    padding: 10px 15px;
+    border-radius: 5px;
+    padding-bottom: 10px;
+}
+
+section.content .content-left .send-comments h1 {
+    margin: 20px 0px;
+}
+
+section.content .content-left .send-comments input {
+    width: 49%;
+    height: 40px;
+    text-indent: 10px;
+    border: none;
+    outline: none;
+    box-shadow: #00000022 1px 1px 2px 2px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+section.content .content-left .send-comments textarea {
+    width: 98%;
+    min-height: 120px;
+    text-indent: 10px;
+    border: none;
+    outline: none;
+    box-shadow: #00000022 1px 1px 2px 2px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    padding: 5px;
+    font-size: 14px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+section.content .content-left .send-comments button {
+
+    height: 50px;
+    border-radius: 20px;
+    background-color: pink;
+    border: none;
+    outline: none;
+    padding: 0 20px;
+    transition: all 0.5s linear;
+    color: #222222;
+    box-shadow: inset #ffffff55 0 0 10px 10px, #00000033 1px 1px 1px 1px;
+    margin: 5px 0px;
+}
+
+section.content .content-left .send-comments button:active {
+    box-shadow: inset #ffffffcc 0 0 10px 5px;
+}
+
+/*评论区*/
 section.content .content-left .comments-list .comments {
     background-color: #ffffffdd;
     padding: 10px 4px 10px 8px;
     border-radius: 5px;
     /* border: 1px dashed #00000050; */
     box-shadow: #00000050 2px 2px 2px 2px;
+    margin-bottom: 10px;
 }
 
 section.content .content-left .comments-list h3 {
@@ -80,20 +137,33 @@ section.content .content-left .comments-list h3 {
 }
 
 
+
 section.content .content-left .comments-list .comment-user {
     height: 50px;
     margin: 5px 0;
 
 }
 
-section.content .content-left .comments-list .comment-user span {
-    font-size: 16px;
+section.content .content-left .comments-list .comment-user span,
+section.content .content-left .comments-list .reply span {
+    font-size: 13px;
 }
 
 section.content .content-left .comments-list .comment-user img {
-    width: 40px;
+    width: 35px;
     vertical-align: middle;
     border-radius: 50%;
+}
+
+section.content .content-left .comments-list .reply {
+    margin-top: 10px;
+    padding-left: 10%;
+    padding-right: 20%;
+}
+
+section.content .content-left .comments-list .reply img {
+    width: 25px;
+    vertical-align: middle;
 }
 
 section.content .content-left .comments-list .comment-content {
@@ -101,6 +171,7 @@ section.content .content-left .comments-list .comment-content {
     /* min-height: 80px; */
     padding: 0px 10px 10px 60px;
 }
+
 
 
 /* section.content .content-left .comments-list .comment-content .first-comment {

@@ -80,10 +80,16 @@ var sendComments = new Vue({
         inputCode: '',
         canSubmit: false,
         update: 0,
+        floor: '',
     },
     methods: {
         input() {
             this.inputCode.toLowerCase() == this.imgText.toLowerCase() ? this.canSubmit = true : this.canSubmit = false;
+        },
+        switchToComment() {
+            this.comment_id = -1;
+            this.comment_user_name = 0;
+            this.floor = '';
         },
         sendComment() {
             var { reply, reply_name, nickname, email, replycontent } = this.$refs;
@@ -122,6 +128,7 @@ var sendComments = new Vue({
         this.changeCaptcha()
     }
 })
+
 // 获取评论列表
 new Vue({
     el: "#comments-list",
@@ -131,9 +138,10 @@ new Vue({
         ]
     },
     methods: {
-        reply(comment_id, user_name) {
+        reply(comment_id, user_name, floor) {
             sendComments.comment_id = comment_id;
             sendComments.comment_user_name = user_name;
+            sendComments.floor = floor
         }
     },
     computed() {
@@ -144,18 +152,13 @@ new Vue({
             try {
                 var res = await fetch(`/queryCommentByBlogId?bid=` + searchJson.bid);
                 var json = await res.json();
-                // console.log(json.data);
-                // this.comments = json.data;
-                // var json = json.data.forEach((ele, index) => {
-                //     var time = new Date(ele.ctime * 1000);
-                //     ele.ctime = time.getFullYear() + '年' + (time.getMonth() + 1) + '月' + time.getDay() + '日';
-                // })
+                // 发表评论和回复评论的处理
                 var data = json.data;
                 var arrMain = [];
                 var arrReply = [];
                 data.forEach((ele, index) => {
                     var time = new Date(ele.ctime * 1000);
-                    ele.ctime = time.getFullYear() + '年' + (time.getMonth() + 1) + '月' + time.getDay() + '日';
+                    ele.ctime = time.getFullYear() + '年' + (time.getMonth() + 1) + '月' + time.getDay() + '日 ' + time.getHours() + ':' + time.getMinutes();
                     if (ele.parent == -1) {
                         ele.children = [];
                         arrMain.push(ele);
@@ -170,7 +173,7 @@ new Vue({
                         }
                     })
                 })
-                this.total = arrMain.length;
+                this.total = data.length;
                 console.log(arrMain);
                 this.comments = arrMain;
             } catch (e) {

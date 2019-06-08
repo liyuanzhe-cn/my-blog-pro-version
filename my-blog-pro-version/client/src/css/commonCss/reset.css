@@ -85,6 +85,7 @@ video {
     font-size: 100%;
     font: inherit;
     vertical-align: baseline;
+    user-select: text;
 }
 
 /* HTML5 display-role reset for older browsers */
@@ -132,19 +133,16 @@ table {
 a {
     color: #000000ff;
     text-decoration: none;
-    cursor: url('../../font/Select.cur'), default;
+    /* cursor: url('../../font/Select.cur'), default; */
 }
 
-button,
+/* button,
 button:hover {
     cursor: url('../../font/Select.cur'), default;
 }
 
 /*鼠标样式*/
-html {
-    cursor: url('../../font/Normal.cur'), auto;
-}
-
-/* a {
-    cursor: url('../../font/Select.ani'), pointer;
-} */
+/* html,
+body {
+    cursor: url('../../font/Normal.cur'), default;
+}  */
