@@ -234,6 +234,47 @@
                 top: 0px;
             }
         }
+
+        #loginModal {
+            padding-top: 10px;
+            position: fixed;
+            top: 50px;
+            left: calc(50% - 175px);
+            width: 350px;
+            height: 350px;
+            background-color: yellowgreen;
+            border-radius: 5px;
+            box-shadow: #888 1px 1px 5px 0px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            transition: all 0.5s linear;
+        }
+
+        #loginModal input {
+            width: 300px;
+            height: 35px;
+            display: block;
+            margin: 10px auto;
+            text-indent: 10px;
+            border-radius: 10px;
+            border: none;
+            outline: none;
+            box-shadow: #888 1px 1px 5px 0px;
+        }
+
+        #loginModal label {
+            width: 300px;
+            height: 35px;
+            display: block;
+            margin: 5px auto;
+        }
+
+        #loginModal label {
+            font-size: 25px;
+            font-weight: 800;
+            color: #ffffff;
+        }
     </style>
     <!-- VUE 2.6.10 -->
     <script src="https://cdn.jsdelivr.net/npm/vue"></script>
@@ -298,12 +339,13 @@
         </div>
     </div>
 
-    <div class="loginModal">
-        <label for="username"></label>
-        <input id="username" type="text">
-        <label for="pass"></label>
-        <input id="pass" type="password">
-        <input type="button">
+    <div class="loginModal" :style="{top: show? '50px': '-360px'}" id="loginModal">
+        <label for="username">管理员：<small style="font-size: 12px;">网站后台不开放注册</small></label>
+        <input id="username" v-model="username" type="text">
+        <label for="pass">密码：</label>
+        <input id="pass" v-model="pass" type="password">
+        <input type="button" @click="login" value='登陆'>
+        <input type="button" @click="register" value='注册'>
     </div>
     <script src="./js/isLogin.js"></script>
 </body>

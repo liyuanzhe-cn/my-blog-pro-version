@@ -1,7 +1,7 @@
 var path = new Map();
 var blogDAO = require('../dao/blogDAO');
 var { getNow } = require('../util/timeUtil');
-const { writeResult, JSONtoString } = require('../util/responseUtil');
+const { writeResult } = require('../util/responseUtil');
 const queryString = require('query-string');
 const url = require('url');
 const tagsDAO = require('../dao/tagsDAO');
@@ -12,7 +12,6 @@ function queryBlogByPage(request, response) {
     var params = url.parse(request.url, true).query;
     blogDAO.queryBlogByPage(parseInt(params.page), parseInt(params.pageSize), function (result) {
         response.writeHead(200);
-
         response.write(writeResult('success', '查询成功', result));
         response.end();
     })
@@ -187,4 +186,6 @@ path.set('/queryBlogById', queryBlogById);
 path.set('/queryBlogCount', queryBlogCount);
 path.set('/editBlog', editBlog);
 path.set('/queryBlogByPage', queryBlogByPage);
+
+
 module.exports.path = path;

@@ -17,12 +17,20 @@
   <script src="./bootstrap-wysiwyg-master/external/google-code-prettify/prettify.js"></script>
   <link href="./bootstrap-wysiwyg-master/index.css" rel="stylesheet">
   <script src="./bootstrap-wysiwyg-master/bootstrap-wysiwyg.js"></script>
+  <script src="./js/jwt-decode.js"></script>
   <script>
     //登陆判断
     var token = localStorage.getItem('token');
     if (!token) {
       alert('您未登录');
+      var token = localStorage.removeItem('token');
       window.location.href = '/admin.html';
+    } else {
+      var decoded = jwt_decode(token);
+      if (new Date().getTime() / 1000 > decoded.exp) {
+        window.location.href = '/admin.html';
+        var token = localStorage.removeItem('token');
+      }
     }
   </script>
 </head>

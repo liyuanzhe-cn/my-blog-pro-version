@@ -3,6 +3,8 @@ const server = express();
 const globalConfig = require('./config');
 const loader = require('./loader');
 const fs = require('fs');
+const passport = require('passport');
+const userRouter = require('./router/loginRouter');
 
 //get 类
 server.get('/queryCommentCountByBlogId', loader.get('/queryCommentCountByBlogId'));
@@ -25,7 +27,15 @@ server.get("/queryBlogCountByTag", loader.get("/queryBlogCountByTag"))
 //post 类
 server.post('/editBlog', loader.get('/editBlog'));
 server.post('/editEveryDay', loader.get('/editEveryDay'));
+
+
+//登陆注册验证接口
+server.use(passport.initialize());
+require('./config/passport')(passport);
+server.use('/api/user', userRouter);
+
 server.listen(globalConfig.port);
+
 // 打印接口
 console.log(globalConfig);
 

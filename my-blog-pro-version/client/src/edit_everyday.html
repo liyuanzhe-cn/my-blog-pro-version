@@ -22,7 +22,14 @@
     var token = localStorage.getItem('token');
     if (!token) {
       alert('您未登录');
+      var token = localStorage.removeItem('token');
       window.location.href = '/admin.html';
+    } else {
+      var decoded = jwt_decode(token);
+      if (new Date().getTime() / 1000 > decoded.exp) {
+        window.location.href = '/admin.html';
+        var token = localStorage.removeItem('token');
+      }
     }
   </script>
 </head>

@@ -19,7 +19,8 @@ new Vue({
         tags: "Vue",
         views: 20,
         ctime: 120002020,
-        content: "<h1>文章内容正在赶来。。。</h1>"
+        content: "<h1>文章内容正在赶来。。。</h1>",
+        id: 0
     },
     created() {
 
@@ -50,17 +51,15 @@ new Vue({
                     console.log(this.data)
                     this.content = json.data[0].content;
                     this.ctime = json.data[0].ctime;
-                    // this.data.id = json.data[0].id;
+                    this.id = json.data[0].id;
                     this.tags = json.data[0].tags;
                     this.title = json.data[0].title;
                     this.views = json.data[0].views;
-
                 }
             } catch (e) {
                 console.log(e);
             }
         })();
-
     },
     methods: {
         notFoundBlog() {

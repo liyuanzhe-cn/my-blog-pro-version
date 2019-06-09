@@ -1,8 +1,8 @@
 var dbutil = require('./DButil');
 
-function inserEveryDay(content, author, ctime, success) {
-    var insertSQL = `insert into every_day (content,author,ctime) value(?,?,?)`;
-    var params = [content, author, ctime];
+function insertuser(username, pass, ctime, success) {
+    var insertSQL = `insert into user (username, pass,ctime ) value (?,?,?)`;
+    var params = [username, pass, ctime];
     var connection = dbutil.createConnection();
     connection.connect();
     connection.query(insertSQL, params, (err, result) => {
@@ -16,10 +16,10 @@ function inserEveryDay(content, author, ctime, success) {
 
 }
 
-function queryEveryDay(success) {
+function finduser(username, success) {
     // console.log('数据库查找中')
-    var selectSQL = `select * from every_day order by id desc limit 1`;
-    var params = [];
+    var selectSQL = `select * from user where username = ?`;
+    var params = [username];
 
     var connection = dbutil.createConnection();
     connection.connect();
@@ -35,4 +35,4 @@ function queryEveryDay(success) {
 }
 
 
-module.exports = { inserEveryDay, queryEveryDay };
+module.exports = { insertuser, finduser };

@@ -3,12 +3,10 @@ function queryToJson(query) {
     var search = query.replace(/[=|&]/g, ',');
     console.log(search);
     var searchArr = search.split(',')
-
     var searchJson = {};
     for (var i = 0; i < searchArr.length; i++) {
         searchJson[searchArr[i]] = searchArr[++i];
     }
-
     return searchJson;
 }
 
@@ -60,7 +58,6 @@ new Vue({
     },
     methods: {
         jumpTo(page) {
-
             console.log(page)
             this.page = page
             this.generatePageTool;
@@ -76,16 +73,13 @@ new Vue({
             var result = [];
             // 移动到首页
             result.push({ text: "<<", page: 1 });
-
             if (nowPage > 2) {
                 result.push({ text: nowPage - 2, page: nowPage - 2 });
             }
             if (nowPage > 1) {
                 result.push({ text: nowPage - 1, page: nowPage - 1 });
             }
-
             result.push({ text: nowPage, page: nowPage });
-
             if (nowPage + 1 <= Math.ceil((totalCount) / pageSize)) {
                 result.push({ text: nowPage + 1, page: nowPage + 1 });
             }
@@ -116,7 +110,7 @@ new Vue({
                 // 获取博客总量
                 (async () => {
                     try {
-                        var res = await fetch("/queryBlogCountByTag");
+                        var res = await fetch("/queryBlogCount");
                         var data = await res.json();
                         console.log(data.data[0]['count(1)']);
                         this.count = data.data[0]['count(1)'];
@@ -149,8 +143,6 @@ new Vue({
                             console.log('文章获取失败;')
                         }
                     })();
-
-
                 } else {
                     // 不指定tag的时候
                     console.log('没有tag');
@@ -171,8 +163,7 @@ new Vue({
                         }
                     })();
                 }
-                console.log(this.count)
-
+                console.log(this.count);
             }
         }
     },

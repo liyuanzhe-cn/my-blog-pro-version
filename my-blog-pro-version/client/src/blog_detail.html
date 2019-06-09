@@ -20,6 +20,8 @@
     <link rel="stylesheet" href="./css/commonCss/footer.css">
     <!-- VUE 2.6.10 -->
     <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script src="./js/jwt-decode.js"></script>
+
 </head>
 
 <body>
@@ -149,6 +151,10 @@
                         <span>
                             浏览： {{views}}
                         </span>
+                        <br>
+                        <span>
+                            <a style="color:red" :href="'/edit_blog.html?bid' + id ">编辑</a>
+                        </span>
 
                     </div>
                     <div class="blog-content" v-html="content">
@@ -169,7 +175,6 @@
                             <div class="comment-content">
                                 {{v.comment}}{{v.children[0] && v.children[0].comment}}
                             </div>
-
                         </div>
                         <!-- 回复区域 -->
                         <div v-for="(vr,kr) in comments[k].children" class="reply">
@@ -186,16 +191,13 @@
                 </div>
                 <!-- 回复 -->
                 <div class="send-comments" id="send-comments">
-                    <h1>{{comment_id != -1 ? ('回复 '+ floor +'楼 '+ comment_user_name +'的评论'):'发表评论'}}
+                    <h1>{{comment_id != -1 ? ('回复 '+( floor + 1 )+'楼 '+ comment_user_name +'的评论'):'发表评论'}}
                         <button v-if="comment_id !=-1" @click="switchToComment">{{"转为评论模式"}}</button>
                     </h1>
                     <div>
                         <input type="hidden" ref="reply" id="reply" class="comment-reply" v-model="comment_id">
                         <input type="hidden" ref="reply_name" id="reply_name" class="comment-reply-name"
                             v-model="comment_user_name">
-
-
-
                         <input type="text" ref="nickname" placeholder="您的昵称" class="comment-contact comment-nickname">
                         <input type="text" ref="email" placeholder="您的邮箱(评论时会回复邮箱通知)"
                             class="comment-contact comment-email">
@@ -253,8 +255,10 @@
                     <p>随机标签云</p>
                     <div class="tag-container">
                         <a class="animated"
-                            v-bind:style="{color:randomColor(),transform:'perspective(400px) rotateZ('+ (Math.random()*25 -25) +'deg) rotateY('+ (Math.random()*80 - 40) +'deg)',margin:'10px 10px', fontSize:randomSize()}"
-                            v-for="(v,k) in tags" href="">{{v}}</a>
+                            v-bind:style="{color:randomColor(),transform:'rotateZ('+ (Math.random()*25 -25) +'deg) rotateY('+ (Math.random()*50 -50) +'deg)',margin:'10px 10px', fontSize:randomSize()}"
+                            v-for="(v,k) in tags" :href="'/index.html?tag=' + v.id">
+                            {{v.tags}}
+                        </a>
                     </div>
                 </div>
 
@@ -271,16 +275,16 @@
                     <p>最近评论</p>
                     <div v-for="(v,k) in commentsList" class="comment-item">
                         <div class="comment-info">
-                            <span>{{v.name}}</span>
-                            <span>[{{v.date}}]</span>
+                            <span>{{v.user_name}}</span>
+                            <span>[{{v.ctime}}]</span>
                         </div>
                         <div class="comment-content">
                             <p>{{v.comment}}</p>
                         </div>
                     </div>
-
-
                 </div>
+
+
                 <div class="friend-links">
                     <p>友情链接</p>
                     <ul>

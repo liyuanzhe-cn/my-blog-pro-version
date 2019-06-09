@@ -300,7 +300,7 @@
                 </div>
                 <!-- 回复 -->
                 <div class="send-comments" id="send-comments">
-                    <h1>{{comment_id != -1 ? ('回复 '+ floor +'楼 '+ comment_user_name +'的评论'):'发表评论'}}
+                    <h1>{{comment_id != -1 ? ('回复 '+( floor + 1) +'楼 '+ comment_user_name +'的评论'):'发表评论'}}
                         <button v-if="comment_id !=-1" @click="switchToComment">{{"转为评论模式"}}</button>
                     </h1>
                     <div>
