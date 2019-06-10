@@ -10,7 +10,7 @@
     /* height: 50px; */
     position: relative;
     top: 5px;
-    text-shadow: #ffffffaa 1px 1px;
+    text-shadow: rgba(255,255,255,0.7) 1px 1px;
 }
 
 section.content {
@@ -43,7 +43,7 @@ section.content .content-right {
 section.content .content-left .every-day {
     padding: 1vw;
     margin-bottom: 10px;
-    background: #ffffffdd;
+    background: rgba(255,255,255,0.9);
     border-radius: 5px;
 }
 
@@ -70,7 +70,7 @@ section.content .content-left .every-day>p::after {
 
 
 section.content .content-left .article-list {
-    background-color: #ffffffdd;
+    background-color: rgba(255,255,255,0.9);
     padding: 5px;
     border-radius: 5px;
     margin-bottom: 10px;
@@ -107,7 +107,7 @@ section.content .content-left .page_tool ul {}
 
 
 section.content .content-left .page_tool ul li {
-    background-color: #ffffffcc;
+    background-color: rgba(255,255,255,0.8);
     display: inline-block;
     padding: 10px;
     border-radius: 5px;

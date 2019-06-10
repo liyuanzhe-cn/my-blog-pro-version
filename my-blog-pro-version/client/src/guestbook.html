@@ -131,11 +131,7 @@
                         <p style="color:#000000cc">不要发广告和不当言论，谢谢。</p>
                         <p style="color:#000000cc">博主联系:liyuanzhe_cn@163.com</p> &nbsp;
                     </div>
-
                 </div>
-
-
-
                 <div class="comments-list" id="comments-list">
                     <h3>关于：目前有{{total}}条留言</h3>
                     <div class="comments" v-for="(v,k) in comments">
@@ -149,7 +145,6 @@
                             <div class="comment-content">
                                 {{v.comment}}{{v.children[0] && v.children[0].comment}}
                             </div>
-
                         </div>
                         <!-- 回复区域 -->
                         <div v-for="(vr,kr) in comments[k].children" class="reply">

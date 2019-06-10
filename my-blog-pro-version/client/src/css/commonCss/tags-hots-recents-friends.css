@@ -5,7 +5,7 @@
 /**/
 #music-player {
     width: 100%;
-    /* background-color: #ffffffdd; */
+    /* background-color: rgba(255,255,255,0.85); */
     border-radius: 15px;
     position: relative;
 
@@ -18,11 +18,11 @@
 #image .image {
     height: 280px;
     width: 100%;
-    background-color: #ffffff00;
+    background-color: rgba(255, 255, 255, 0);
     margin-top: -5px;
     border-top-left-radius: 15px;
     border-top-right-radius: 15px;
-    box-shadow: #ffffff88 0px 0px 5px 1px;
+    box-shadow: rgba(255, 255, 255, 0.55) 0px 0px 5px 1px;
     position: absolute;
     background-size: cover;
     background-position: center center;
@@ -35,7 +35,7 @@
 #image .image-small {
     width: 180px;
     height: 180px;
-    box-shadow: #000000bb 0 0 0 40px;
+    box-shadow: rgba(0, 0, 0, 0.75) 0 0 0 40px;
     position: relative;
     top: 50px;
     z-index: 0;
@@ -50,10 +50,10 @@
 #player {
     padding: 25px;
     color: #333;
-    background-color: #ffffffdd;
+    background-color: rgba(255, 255, 255, 0.85);
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
-    box-shadow: #ffffffdd 0px -5px 2px 0px;
+    box-shadow: rgba(255, 255, 255, 0.85) 0px -5px 2px 0px;
 }
 
 #songTitle {
@@ -149,7 +149,7 @@
 section.content .content-right .random-tags {
     width: 100%;
     /* min-height: 100px; */
-    background-color: #ffffffdd;
+    background-color: rgba(255, 255, 255, 0.85);
     border-radius: 5px;
     margin-bottom: 10px;
 
@@ -178,7 +178,7 @@ section.content .content-right .random-tags .tag-container {
 /*热门文章*/
 section.content .content-right .hot-articles {
     width: 100%;
-    background-color: #ffffffdd;
+    background-color: rgba(255, 255, 255, 0.85);
     border-radius: 5px;
     margin-bottom: 10px;
     padding-bottom: 10px;
@@ -208,7 +208,7 @@ section.content .content-right .hot-articles ul li {
 section.content .content-right .recent-comments {
     width: 100%;
     /* min-height: 100px; */
-    background-color: #ffffffdd;
+    background-color: rgba(255, 255, 255, 0.85);
     border-radius: 5px;
     margin-bottom: 10px;
     padding: 0px 10px 5px;
@@ -259,7 +259,7 @@ section.content .content-right .recent-comments .comment-item .comment-content {
 section.content .content-right .friend-links {
     width: 100%;
     /* min-height: 100px; */
-    background-color: #ffffffdd;
+    background-color: rgba(255, 255, 255, 0.85);
     border-radius: 5px;
     margin-bottom: 10px;
     padding: 0px 10px 5px;

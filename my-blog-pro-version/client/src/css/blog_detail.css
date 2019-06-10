@@ -24,7 +24,7 @@ section.content {
 section.content .content-left,
 section.content .content-right {
     /* background-color: #ffffff70; */
-    /* box-shadow: #00000050 1px 1px 3px 1px; */
+    /* box-shadow: rgba(0,0,0,0.4) 1px 1px 3px 1px; */
     box-sizing: border-box;
     border-radius: 5px;
     /* border: 1px solid #fff; */
@@ -96,7 +96,7 @@ section.content .content-left .article-list .article-body {
 /* 发送评论*/
 section.content .content-left .send-comments {
     margin-top: 10px;
-    background-color: #ffffffdd;
+    background-color: rgba(255, 255, 255, 0.9);
     padding: 10px 15px;
     border-radius: 5px;
     padding-bottom: 10px;
@@ -141,29 +141,29 @@ section.content .content-left .send-comments button {
     padding: 0 20px;
     transition: all 0.5s linear;
     color: #222222;
-    box-shadow: inset #ffffff55 0 0 10px 10px, #00000033 1px 1px 1px 1px;
+    box-shadow: inset rgba(255, 255, 255, 0.4) 0 0 10px 10px, #00000033 1px 1px 1px 1px;
     margin: 5px 0px;
 }
 
 section.content .content-left .send-comments button:active {
-    box-shadow: inset #ffffffcc 0 0 10px 5px;
+    box-shadow: inset rgba(255, 255, 255, 0.8) 0 0 10px 5px;
 }
 
 /*评论区*/
 section.content .content-left .comments-list .comments {
-    background-color: #ffffffdd;
+    background-color: rgba(255, 255, 255, 0.9);
     padding: 10px 4px 10px 8px;
     border-radius: 5px;
-    /* border: 1px dashed #00000050; */
-    box-shadow: #00000050 2px 2px 2px 2px;
+    /* border: 1px dashed rgba(0,0,0,0.4); */
+    box-shadow: rgba(0, 0, 0, 0.4) 2px 2px 2px 2px;
     margin-bottom: 10px;
 }
 
 section.content .content-left .comments-list h3 {
     padding: 20px 0px 15px 10px;
     font-size: 22px;
-    color: #ffffffee;
-    text-shadow: #77777788 1px 1px;
+    color: rgba(255, 255, 255, 0.85);
+    text-shadow: rgba(180, 180, 180, 0.6) 1px 1px;
 }
 
 
@@ -220,7 +220,7 @@ section.content .content-left .page_tool ul {}
 
 
 section.content .content-left .page_tool ul li {
-    background-color: #ffffffcc;
+    background-color: rgba(255,255,255,0.8);
     display: inline-block;
     padding: 10px;
     border-radius: 5px;

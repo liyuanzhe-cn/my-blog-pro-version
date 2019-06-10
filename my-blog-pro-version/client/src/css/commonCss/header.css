@@ -12,14 +12,14 @@ header {
 
 header .container-wrapper {
     width: 100vw;
-    background-color: #ffffff77;
+    background-color: rgba(255,255,255,0.5);
     height: 50px;
     position: fixed;
     z-index: 10;
 }
 
 header .container-wrapper .container {
-    background-color: #ffffffdd;
+    background-color: rgba(255,255,255,0.9);
     width: 80vw;
     transform: translate(10vw);
     margin: 0 auto;
@@ -75,7 +75,7 @@ header .container .search input:first-of-type {
 header .container .search input {
     height: 30px;
     transform: translateY(-3px);
-    box-shadow: #00000080 0 0 2px 2px;
+    box-shadow: rgba(0, 0,0,0.65) 0 0 2px 2px;
 }
 
 header a {

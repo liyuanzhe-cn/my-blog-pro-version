@@ -9,7 +9,7 @@
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     position: relative;
     top: 5px;
-    text-shadow: #ffffffaa 1px 1px;
+    text-shadow: rgba(255, 255, 255, 0.7) 1px 1px;
 }
 
 section.content {
@@ -44,7 +44,7 @@ section.content .content-right {
 */
 
 section.content .content-left .tips {
-    background-color: #ffffffdd;
+    background-color: rgba(255, 255, 255, 0.9);
     padding: 5px;
     border-radius: 5px;
     margin-bottom: 10px;
@@ -66,7 +66,7 @@ section.content .content-left .tips p {
 /*评论区*/
 section.content .content-left .send-comments {
     margin-top: 10px;
-    background-color: #ffffffdd;
+    background-color: rgba(255, 255, 255, 0.9);
     padding: 10px 15px;
     border-radius: 5px;
     padding-bottom: 10px;
@@ -82,7 +82,7 @@ section.content .content-left .send-comments input {
     text-indent: 10px;
     border: none;
     outline: none;
-    box-shadow: #00000022 1px 1px 2px 2px;
+    box-shadow: rgba(0, 0, 0, 0.15) 1px 1px 2px 2px;
     border-radius: 5px;
     margin-bottom: 10px;
 }
@@ -93,7 +93,7 @@ section.content .content-left .send-comments textarea {
     text-indent: 10px;
     border: none;
     outline: none;
-    box-shadow: #00000022 1px 1px 2px 2px;
+    box-shadow: rgba(0, 0, 0, 0.15) 1px 1px 2px 2px;
     border-radius: 5px;
     margin-bottom: 10px;
     padding: 5px;
@@ -111,17 +111,17 @@ section.content .content-left .send-comments button {
     padding: 0 20px;
     transition: all 0.5s linear;
     color: #222222;
-    box-shadow: inset #ffffff55 0 0 10px 10px, #00000033 1px 1px 1px 1px;
+    box-shadow: inset rgba(255, 255, 255, 0.4) 0 0 10px 10px, rgba(0, 0, 0, 0.2) 1px 1px 1px 1px;
     margin: 5px 0px;
 }
 
 section.content .content-left .send-comments button:active {
-    box-shadow: inset #ffffffcc 0 0 10px 5px;
+    box-shadow: inset rgba(255, 255, 255, 0.8) 0 0 10px 5px;
 }
 
 /*评论区*/
 section.content .content-left .comments-list .comments {
-    background-color: #ffffffdd;
+    background-color: rgba(255, 255, 255, 0.9);
     padding: 10px 4px 10px 8px;
     border-radius: 5px;
     /* border: 1px dashed #00000050; */
@@ -132,8 +132,8 @@ section.content .content-left .comments-list .comments {
 section.content .content-left .comments-list h3 {
     padding: 20px 0px 15px 10px;
     font-size: 22px;
-    color: #ffffffee;
-    text-shadow: #77777788 1px 1px;
+    color: rgba(255, 255, 255, 0.85);
+    text-shadow: rgba(180, 180, 180, 0.6) 1px 1px;
 }
 
 
