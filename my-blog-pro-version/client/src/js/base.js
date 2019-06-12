@@ -230,7 +230,7 @@ new Vue({
                 var data = await res.json();
 
                 data.data.forEach((ele, index) => {
-                    var time = new Date(ele.ctime);
+                    var time = new Date(ele.ctime * 1000);
                     ele.ctime = time.getFullYear() + '年' + (time.getMonth() + 1) + '月' + time.getDate() + '日 ' + time.getHours() + ':' + time.getMinutes();
                 })
                 console.log('最近评论', data.data)

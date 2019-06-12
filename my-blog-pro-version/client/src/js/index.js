@@ -153,7 +153,7 @@ new Vue({
                             console.log(data);
                             data.data.forEach((ele, index) => {
                                 var time = new Date(ele.ctime * 1000);
-                                ele.ctime = time.getFullYear() + '年' + (time.getMonth() + 1) + '月' + time.getDay() + '日';
+                                ele.ctime = time.getFullYear() + '年' + (time.getMonth() + 1) + '月' + time.getDate() + '日';
                                 ele.content = ele.content.replace(/<img[\d\D]>/g, '').substr(0, 1000);
                                 ele.link = '/blog_detail.html?bid=' + ele.id
                             })
