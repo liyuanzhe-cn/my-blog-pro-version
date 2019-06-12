@@ -223,7 +223,6 @@
             </div>
             <!-- 右侧内容区域 -->
             <div class="content-right">
-
                 <div id="music-player">
                     <div id="image">
                         <div class="image" :style="{backgroundImage: 'url(' + musicList[currentMusic]['image'] + ')'}">
@@ -243,14 +242,13 @@
                             <button id="next" @click="change('next')"><img src="./image/Next.png" height="90%"
                                     width="90%" /></button>
                         </div>
-
                         <div @click="setBar" id="seek-bar">
                             <div id="fill"></div>
                             <div id="handle" :style="{left:percentage}"></div>
                         </div>
                     </div>
                 </div>
-
+                <!-- 随机标签云 -->
                 <div id="random-tags" class="random-tags">
                     <p>随机标签云</p>
                     <div class="tag-container">
@@ -261,7 +259,7 @@
                         </a>
                     </div>
                 </div>
-
+                <!-- 热门文章 -->
                 <div id="hot-articles" class="hot-articles ">
                     <p>热门文章</p>
                     <ul class="hot-articles-container">
