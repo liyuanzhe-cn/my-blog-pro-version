@@ -5,12 +5,10 @@
 }
 
 
-body {
+/* body {
     height: 100%;
     position: relative;
-
-    /* overflow: hidden; */
-}
+} */
 
 /**/
 
@@ -25,6 +23,8 @@ body {
     overflow: hidden;
     position: fixed;
     z-index: 0;
+    /* margin-right: -10.4px; */
+    padding: 0;
 }
 
 div.sentence {
