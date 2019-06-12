@@ -87,7 +87,7 @@ new Vue({
                 var arrReply = [];
                 data.forEach((ele, index) => {
                     var time = new Date(ele.ctime * 1000);
-                    ele.ctime = time.getFullYear() + '年' + (time.getMonth() + 1) + '月' + time.getDay() + '日 ' + time.getHours() + ':' + time.getMinutes();
+                    ele.ctime = time.getFullYear() + '年' + (time.getMonth() + 1) + '月' + time.getDate() + '日 ' + time.getHours() + ':' + time.getMinutes();
                     if (ele.parent == -1) {
                         ele.children = [];
                         arrMain.push(ele);

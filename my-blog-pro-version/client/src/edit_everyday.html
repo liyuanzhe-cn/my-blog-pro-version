@@ -143,7 +143,7 @@
       }
     })
     var emptyCheck = function () {
-      var content = $('#editor').html();
+      var content = $('#editor')[0].innerHTML;
       var origin = $('#write-origin').val();
       if (content.length <= 2) {
         alert("内容不少于2字");

@@ -231,7 +231,7 @@ new Vue({
 
                 data.data.forEach((ele, index) => {
                     var time = new Date(ele.ctime);
-                    ele.ctime = time.getFullYear() + '年' + (time.getMonth() + 1) + '月' + time.getDay() + '日 ' + time.getHours() + ':' + time.getMinutes();
+                    ele.ctime = time.getFullYear() + '年' + (time.getMonth() + 1) + '月' + time.getDate() + '日 ' + time.getHours() + ':' + time.getMinutes();
                 })
                 console.log('最近评论', data.data)
                 this.commentsList = data.data;
